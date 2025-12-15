@@ -232,11 +232,11 @@
                                     <button class="sidebar-filter d-block d-lg-none" type="button"
                                         data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
                                         aria-controls="offcanvasExample">
-                                        Filter <img src="assets/images/angle-down.svg" alt="angle-down" />
+                                        Filter <img src="{{asset('front/assets/images/angle-down.svg')}}" alt="angle-down" />
                                     </button>
                                     <div class="list-grid-view">
                                         <a href="/product/category/1" class="view-btn grid-view active"><img
-                                                class="view-icon" src="assets/images/view-grid.svg"
+                                                class="view-icon" src="{{asset('front/assets/images/view-grid.svg')}}"
                                                 alt="view-grid" /></a>
                                     </div>
                                 </div>
@@ -271,7 +271,7 @@
                                     <div class="single-grid-product">
                                         <div class="product-top">
                                             <a href="product-details.html"><img class="product-thumbnal"
-                                                    src="assets/images/products/tshirt.png" alt="product" /></a>
+                                                    src="{{asset('front/assets/images/products/tshirt.png')}}" alt="product" /></a>
                                             <div class="product-flags">
                                                 <span class="product-flag sale">NEW</span>
                                                 <span class="product-flag discount">-10.00</span>
@@ -317,7 +317,7 @@
                                     <div class="single-grid-product">
                                         <div class="product-top">
                                             <a href="product-details.html"><img class="product-thumbnal"
-                                                    src="assets/images/products/tshirt.png" alt="product" /></a>
+                                                    src="{{asset('front/assets/images/products/tshirt.png')}}" alt="product" /></a>
                                             <div class="product-flags">
                                                 <span class="product-flag sale">NEW</span>
                                                 <span class="product-flag discount">-10.00</span>
@@ -363,7 +363,7 @@
                                     <div class="single-grid-product">
                                         <div class="product-top">
                                             <a href="product-details.html"><img class="product-thumbnal"
-                                                    src="assets/images/products/tshirt.png" alt="product" /></a>
+                                                    src="{{asset('front/assets/images/products/tshirt.png')}}" alt="product" /></a>
                                             <div class="product-flags">
                                                 <span class="product-flag sale">NEW</span>
                                                 <span class="product-flag discount">-10.00</span>
@@ -409,7 +409,7 @@
                                     <div class="single-grid-product">
                                         <div class="product-top">
                                             <a href="product-details.html"><img class="product-thumbnal"
-                                                    src="assets/images/products/tshirt.png" alt="product" /></a>
+                                                    src="{{asset('front/assets/images/products/tshirt.png')}}" alt="product" /></a>
                                             <div class="product-flags">
                                                 <span class="product-flag sale">NEW</span>
                                                 <span class="product-flag discount">-10.00</span>
@@ -455,7 +455,7 @@
                                     <div class="single-grid-product">
                                         <div class="product-top">
                                             <a href="product-details.html"><img class="product-thumbnal"
-                                                    src="assets/images/products/tshirt.png" alt="product" /></a>
+                                                    src="{{asset('front/assets/images/products/tshirt.png')}}" alt="product" /></a>
                                             <div class="product-flags">
                                                 <span class="product-flag sale">NEW</span>
                                                 <span class="product-flag discount">-10.00</span>
@@ -501,7 +501,7 @@
                                     <div class="single-grid-product">
                                         <div class="product-top">
                                             <a href="product-details.html"><img class="product-thumbnal"
-                                                    src="assets/images/products/tshirt.png" alt="product" /></a>
+                                                    src="{{asset('front/assets/images/products/tshirt.png')}}" alt="product" /></a>
                                             <div class="product-flags">
                                                 <span class="product-flag sale">NEW</span>
                                                 <span class="product-flag discount">-10.00</span>
@@ -547,7 +547,7 @@
                                     <div class="single-grid-product">
                                         <div class="product-top">
                                             <a href="/product/single/rosmo-namino"><img class="product-thumbnal"
-                                                    src="assets/images/products/tshirt.png" alt="product" /></a>
+                                                    src="{{asset('front/assets/images/products/tshirt.png')}}" alt="product" /></a>
                                             <div class="product-flags">
                                                 <span class="product-flag sale">NEW</span>
                                                 <span class="product-flag discount">-10.00</span>
@@ -593,7 +593,7 @@
                                     <div class="single-grid-product">
                                         <div class="product-top">
                                             <a href="product-details.html-2"><img class="product-thumbnal"
-                                                    src="assets/images/products/tshirt.png" alt="product" /></a>
+                                                    src="{{asset('front/assets/images/products/tshirt.png')}}" alt="product" /></a>
                                             <div class="product-flags">
                                                 <span class="product-flag sale">NEW</span>
                                                 <span class="product-flag discount">-10.00</span>

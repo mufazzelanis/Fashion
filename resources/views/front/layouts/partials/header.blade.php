@@ -75,7 +75,7 @@
                 <div class="container">
                     <div class="header-middle-wrap">
                         <div class="brand-area">
-                            <a class="brand-logo" href="index.html"><img class="brand-image"
+                            <a class="brand-logo" href="{{url('/')}}"><img class="brand-image"
                                     src="{{asset('front/assets/images/logo.png')}}" alt="Fashionwave" /></a>
                         </div>
                         <div class="search-area">
@@ -109,7 +109,7 @@
                         <div class="header-right">
 
                             <div class="wishlist single-btn">
-                                <a href="wishlist.html" class="wishlist-btn header-btn">
+                                <a href="{{route('wishlists.index')}}" class="wishlist-btn header-btn">
                                     <div class="btn-left">
                                         <i class="btn-icon flaticon-like"></i>
                                         <span class="count wishListCuntFromController">0</span>
@@ -122,7 +122,7 @@
                                 </a>
                             </div>
                             <div class="compare single-btn">
-                                <a href="compare.html" class="compare-btn header-btn">
+                                <a href="{{route('compares.index')}}" class="compare-btn header-btn">
                                     <div class="btn-left">
                                         <i class="btn-icon flaticon-bar-chart"></i>
                                         <span class="count CompareCuntFromController">0</span>
@@ -136,16 +136,18 @@
                             </div>
 
                             <div class="cart single-btn">
-                                <a data-bs-toggle="offcanvas" href="#cartOffcanvasSidebar" role="button"
-                                    aria-controls="cartOffcanvasSidebar" class="cart-btn header-btn">
+                                <a data-bs-toggle="offcanvas"
+                                    data-bs-target="#cartOffcanvasSidebar"
+                                    role="button"
+                                    aria-controls="cartOffcanvasSidebar"
+                                    class="cart-btn header-btn">
                                     <div class="btn-left">
                                         <i class="btn-icon flaticon-shopping-bag"></i>
                                         <span class="count totalCountItem">2</span>
                                     </div>
                                     <div class="btn-right">
                                         <span class="btn-text">Your Cart</span>
-                                        <span class="price totalAmount">
-                                            $ 540</span>
+                                        <span class="price totalAmount">$ 540</span>
                                     </div>
                                 </a>
                             </div>
@@ -159,7 +161,7 @@
                         <li class="menu-item menu-item-has-children active">
                             <a class="menu-link" href="{{url('/')}}">Home</a>
                         </li>
-                        <li class="menu-item "><a class="menu-link" href="{{route('product.index')}}">Shop</a>
+                        <li class="menu-item "><a class="menu-link" href="{{route('products.index')}}">Shop</a>
                         </li>
 
                         <li class="menu-item "><a class="menu-link" href="{{route('about.us')}}">About Us</a>
@@ -181,17 +183,17 @@
             <div class="container">
                 <div class="menu-wrap">
                     <div class="header-left">
-                        <a class="brand-logo" href="http://127.0.0.1:8000"><img class="brand-image"
+                        <a class="brand-logo" href="{{url('/')}}"><img class="brand-image"
                                 src="{{asset('front/assets/images/logo.png')}}" alt="Fashionwave" /></a>
                     </div>
                     <div class="header-right">
-                        <a href="wishlist.html" class="wishlist-btn header-btn">
+                        <a href="{{route('wishlists.index')}}" class="wishlist-btn header-btn">
                             <div class="btn-left">
                                 <i class="btn-icon flaticon-like"></i>
                                 <span class="count wishListCuntFromController">0</span>
                             </div>
                         </a>
-                        <a href="compare.html" class="compare-btn header-btn">
+                        <a href="{{route('compares.index')}}" class="compare-btn header-btn">
                             <div class="btn-left">
                                 <i class="btn-icon flaticon-bar-chart"></i>
                                 <span class="count CompareCuntFromController">0</span>
@@ -249,7 +251,7 @@
             <nav class="main-menu">
                 <ul class="menu-list">
                     <li class="menu-item"><a class="menu-link" href="{{url('/')}}">Home</a></li>
-                    <li class="menu-item"><a class="menu-link" href="{{route('product.index')}}">Shop</a>
+                    <li class="menu-item"><a class="menu-link" href="{{route('products.index')}}">Shop</a>
                     </li>
                     <li class="menu-item"><a class="menu-link" href="about-us.html">Categories</a></li>
                     <li class="menu-item"><a class="menu-link" href="{{route('about.us')}}}">About Us</a></li>
@@ -352,11 +354,11 @@
                     <h3>Total</h3>
                     <h4 class="totalAmount"> $ 540</h4>
                 </div>
-                <a href="checkout.html" class="proceed-to-btn d-block text-center">
+                <a href="{{route('checkouts.index')}}" class="proceed-to-btn d-block text-center">
                     Proceed To Checkout
                 </a>
                 <div class="view-cart-go">
-                    <a href="cart.html">View Cart</a>
+                    <a href="{{route('carts.index')}}">View Cart</a>
                 </div>
             </div>
         </div>

@@ -36,6 +36,7 @@
     <link rel="shortcut icon" href="{{asset('front/assets/images/favicon.png')}}" type="image/x-icon">
 
     <link rel="stylesheet" href="{{asset('front/admin/css/toastr.min.css')}}">
+    
 
 </head>
 

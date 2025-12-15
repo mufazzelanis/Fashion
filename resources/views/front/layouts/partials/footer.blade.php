@@ -254,3 +254,4 @@
     </script>
     <script src="{{('front/assets/js/pages/home.js')}}"></script>
     <script src="{{('front/assets/js/pages/cart.js')}}"></script>
+    

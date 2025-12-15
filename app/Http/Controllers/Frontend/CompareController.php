@@ -1,23 +1,30 @@
-<? php 
+<?php
 
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
+use App\Models\Compare;
 
 class CompareController extends Controller
 {
     public function index()
     {
-        $compare = session()->get('compare', []);
-        return view('front.compare.index', compact('compare'));
+        // $compares = Compare::where('user_id', Auth::id())->get();
+
+        return view('front.compare.index');
     }
 
-    // public function add($id)
+    // public function store(Request $request)
     // {
-    //     $product = Product::findOrFail($id);
-    //     session()->push('compare', $product);
+    //     return Compare::create([
+    //         'user_id'=>auth()->id(),
+    //         'product_id'=>$request->product_id
+    //     ]);
+    // }
 
-    //     return back();
+    // public function destroy(Compare $compare)
+    // {
+    //     $compare->delete();
+    //     return response()->json(['message'=>'Compare removed']);
     // }
 }

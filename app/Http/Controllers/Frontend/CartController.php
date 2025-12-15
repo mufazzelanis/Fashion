@@ -1,42 +1,41 @@
-<? php 
+<?php
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Models\Product;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Frontend\CartController;
+use App\Models\Cart;
+use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    // READ
     public function index()
     {
-        $cart = session()->get('cart', []);
-        return view('front.cart.index', compact('cart'));
+        // return Cart::where('user_id', auth()->id())->get();
+        return view('front.cart.index');
     }
 
-    // public function add($id)
+    // // CREATE
+    // public function store(Request $request)
     // {
-    //     $product = Product::findOrFail($id);
-    //     $cart = session()->get('cart', []);
-
-    //     $cart[$id] = [
-    //         'name'  => $product->name,
-    //         'price' => $product->price,
-    //         'qty'   => ($cart[$id]['qty'] ?? 0) + 1,
-    //         'image' => $product->image,
-    //     ];
-
-    //     session()->put('cart', $cart);
-    //     return back()->with('success', 'Product added to cart');
+    //     return Cart::create([
+    //         'user_id' => auth()->id(),
+    //         'product_id' => $request->product_id,
+    //         'quantity' => $request->quantity,
+    //     ]);
     // }
 
-    // public function remove($id)
+    // // UPDATE
+    // public function update(Request $request, Cart $cart)
     // {
-    //     $cart = session()->get('cart');
-    //     unset($cart[$id]);
-    //     session()->put('cart', $cart);
+    //     $cart->update(['quantity'=>$request->quantity]);
+    //     return $cart;
+    // }
 
-    //     return back();
+    // // DELETE
+    // public function destroy(Cart $cart)
+    // {
+    //     $cart->delete();
+    //     return response()->json(['message'=>'Removed from cart']);
     // }
 }

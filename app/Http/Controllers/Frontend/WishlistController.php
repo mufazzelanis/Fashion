@@ -1,4 +1,5 @@
-<? php 
+<?php
+
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
@@ -8,17 +9,21 @@ class WishlistController extends Controller
 {
     public function index()
     {
-        $items = Wishlist::where('user_id', auth()->id())->get();
-        return view('front.wishlist.index', compact('items'));
+        // return Wishlist::where('user_id',auth()->id())->get();
+        return view('front.wishlist.index');
     }
 
-    // public function add($productId)
+    // public function store(Request $request)
     // {
-    //     Wishlist::firstOrCreate([
-    //         'user_id' => auth()->id(),
-    //         'product_id' => $productId
+    //     return Wishlist::create([
+    //         'user_id'=>auth()->id(),
+    //         'product_id'=>$request->product_id
     //     ]);
+    // }
 
-    //     return back();
+    // public function destroy(Wishlist $wishlist)
+    // {
+    //     $wishlist->delete();
+    //     return response()->json(['message'=>'Wishlist removed']);
     // }
 }

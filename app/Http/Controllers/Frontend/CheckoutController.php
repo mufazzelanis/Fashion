@@ -1,4 +1,5 @@
-<? php 
+<?php
+
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
@@ -9,20 +10,33 @@ class CheckoutController extends Controller
 {
     public function index()
     {
-        $cart = session()->get('cart', []);
-        return view('front.checkout.index', compact('cart'));
+        // return Order::where('user_id',auth()->id())->get();
+        return view('front.checkout.index');
     }
 
-    // public function placeOrder(Request $request)
+    // public function show(Order $order)
     // {
-    //     $order = Order::create([
-    //         'user_id' => auth()->id(),
-    //         'total_amount' => collect(session('cart'))->sum(fn($i) => $i['price'] * $i['qty']),
-    //         'status' => 'pending',
+    //     return $order;
+    // }
+
+    // public function store(Request $request)
+    // {
+    //     return Order::create([
+    //         'user_id'=>auth()->id(),
+    //         'total_amount'=>$request->total_amount,
+    //         'status'=>'pending'
     //     ]);
+    // }
 
-    //     session()->forget('cart');
+    // public function update(Request $request, Order $order)
+    // {
+    //     $order->update($request->all());
+    //     return $order;
+    // }
 
-    //     return redirect()->route('home')->with('success', 'Order placed successfully');
+    // public function destroy(Order $order)
+    // {
+    //     $order->delete();
+    //     return response()->json(['message'=>'Order deleted']);
     // }
 }
