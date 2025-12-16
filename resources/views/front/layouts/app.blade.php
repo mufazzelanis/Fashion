@@ -35,23 +35,36 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('front/assets/images/favicon.png')}}" type="image/x-icon">
 
-    <link rel="stylesheet" href="{{asset('front/admin/css/toastr.min.css')}}">
-    
+    <link rel="stylesheet" href="{{asset('front/assets/css/toastr.css')}}">
+
 
 </head>
 
 <body class="direction-ltr">
 
-@include('front.layouts.partials.header')
+    @include('front.layouts.partials.header')
 
-<div class="maincontent">
+    <div class="maincontent">
 
-@yield('content')   
+        @yield('content')
 
-</div>
-    
+    </div>
 
-  @include('front.layouts.partials.footer')
+
+    @include('front.layouts.partials.footer')
+    <!-- js file  -->
+    <script>
+        @if(session('success'))
+        toastr.success(@json(session('success')));
+        @endif
+
+        @if($errors->any())
+        @foreach($errors->all() as $error)
+        toastr.error(@json($error));
+        @endforeach
+        @endif
+    </script>
+
 
 </body>
 

@@ -72,18 +72,18 @@
                         <h2 class="form-title">Got any questions?</h2>
                         <p class="form-subtitle">Use the form below to get in touch with the sales team</p>
                     </div>
-                    <form method="post" action="/contact-us/store">
-                        <input type="hidden" name="_token" value="z8IzV1IjwBDBzh2xk5mWIRncryxtnW1G2NyKj67x">
+                    <form method="post" action="{{route('contact.store')}}" class="contact-form">
+                        @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="firstname" name="firstname"
+                                    <input type="text" class="form-control" id="first_name" name="first_name"
                                         placeholder="First Name" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="lastname" name="lastname"
+                                    <input type="text" class="form-control" id="last_name" name="last_name"
                                         placeholder="Last Name" />
                                 </div>
                             </div>

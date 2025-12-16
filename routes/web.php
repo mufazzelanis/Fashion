@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\Frontend\CartController;
-use App\Http\Controllers\Frontend\CheckoutController;
-use App\Http\Controllers\Frontend\CompareController;
-use App\Http\Controllers\Frontend\PagesController;
-use App\Http\Controllers\Frontend\ProductController;
-use App\Http\Controllers\Frontend\SubscribeController;
-use App\Http\Controllers\Frontend\WelcomeController;
-use App\Http\Controllers\Frontend\WishlistController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\PagesController;
+use App\Http\Controllers\Frontend\CompareController;
+use App\Http\Controllers\Frontend\ProductController;
+use App\Http\Controllers\Frontend\WelcomeController;
+use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\Frontend\SubscriberController;
 
 // Frontend Welcome Route
 Route::get('/', [WelcomeController::class, 'index']);
@@ -18,6 +18,7 @@ Route::get('/about-us', [PagesController::class, 'aboutUs'])->name('about.us');
 Route::get('/trems-condition', [PagesController::class, 'tremsCondition'])->name('trems.condition');
 Route::get('/privacy-policy', [PagesController::class, 'privacyPolicy'])->name('privacy.policy');
 Route::get('/contact-us', [PagesController::class, 'contactUs'])->name('contact.us');
+Route::post('/contact-us', [PagesController::class, 'storeContact'])->name('contact.store');
 Route::get('/faq', [PagesController::class, 'faq'])->name('faq');
 
 // product routes
@@ -27,4 +28,5 @@ Route::resource('compares', CompareController::class);
 Route::resource('wishlists', WishlistController::class);
 Route::resource('carts', CartController::class);
 Route::resource('checkouts', CheckoutController::class);
-Route::resource('subscribers', SubscribeController::class);
+Route::resource('subscribers', SubscriberController::class);
+

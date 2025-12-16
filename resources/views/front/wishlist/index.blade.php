@@ -40,7 +40,7 @@
                                         <td>
                                             <div class="product-image">
                                                 <a href="/product/single/rosmo-namino-2"><img class="product-thumbnal"
-                                                        src="{{asset('front/uploaded_files/product_image/product-image-8.png')}}"
+                                                        src="{{asset('front/assets/images/products/tshirt.png')}}"
                                                         alt="product" /></a>
                                                 <div class="product-flags">
 
@@ -93,7 +93,7 @@
                                         <td>
                                             <div class="product-image">
                                                 <a href="product-details.html"><img class="product-thumbnal"
-                                                        src="{{asset('front/uploaded_files/product_image/product-image-7.png')}}"
+                                                        src="{{asset('front/assets/images/products/tshirt.png')}}"
                                                         alt="product" /></a>
                                                 <div class="product-flags">
 

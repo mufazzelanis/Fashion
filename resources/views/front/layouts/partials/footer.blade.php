@@ -95,12 +95,12 @@
                                 Receive our latest updates about our <br> products and promotions.
                             </p>
                             <div class="newsletter-form mb-40">
-                                <form id="subscribe_form" name="subscribe_form" method="POST">
-                                    <input type="hidden" name="_token" value="z8IzV1IjwBDBzh2xk5mWIRncryxtnW1G2NyKj67x">
+                                <form action="{{route('subscribers.store')}}" method="POST">
+                                    @csrf
                                     <div class="form-group">
-                                        <input type="email" class="form-control subscribe" id="subscribe"
-                                            name="subscribe" placeholder="Email" required />
-                                        <button type="button" class="subscribe-btn subscribe_btn">Subscribe</button>
+                                        <input type="email" class="form-control subscribe" id="email"
+                                            name="email" placeholder="Email" required />
+                                        <button type="submit" class="subscribe-btn">Subscribe</button>
                                     </div>
                                 </form>
                             </div>
@@ -216,7 +216,7 @@
 
     <script src="{{ asset('front/assets/js/common.js') }}"></script>
 
-    <script src="{{ asset('admin/js/toastr.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/toastr.js') }}"></script>
 
 
     <script>

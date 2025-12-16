@@ -254,8 +254,8 @@
                     <li class="menu-item"><a class="menu-link" href="{{route('products.index')}}">Shop</a>
                     </li>
                     <li class="menu-item"><a class="menu-link" href="about-us.html">Categories</a></li>
-                    <li class="menu-item"><a class="menu-link" href="{{route('about.us')}}}">About Us</a></li>
-                    <li class="menu-item"><a class="menu-link" href="{{route('contact.us')}}}">Contact</a></li>
+                    <li class="menu-item"><a class="menu-link" href="{{route('about.us')}}">About Us</a></li>
+                    <li class="menu-item"><a class="menu-link" href="{{route('contact.us')}}">Contact</a></li>
 
                 </ul>
             </nav>
