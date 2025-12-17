@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
+use App\Services\MailchimpService;
 
 class PagesController extends Controller
 {
@@ -12,13 +13,26 @@ class PagesController extends Controller
     {
         return view('front.pages.about-us');
     }
-    
-    //contact store method
-    public function storeContact(ContactRequest $request)
-    {
-        Contact::create($request->validated());
 
-        return redirect()->back()->with('success', 'Your message has been sent successfully!');
+    // contact US Form store method
+    public function storeContact(ContactRequest $request, MailchimpService $mailchimp)
+    {
+        try {
+            // Save contact message
+            Contact::create($request->validated());
+
+            // Add to Mailchimp audience
+            $mailchimp->contact(
+                $request->email,
+                $request->first_name,
+                $request->last_name,
+                $request->contact_number
+            );
+
+            return redirect()->back()->with('success', 'Your message has been sent successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong!');
+        }
     }
 
     public function tremsCondition()

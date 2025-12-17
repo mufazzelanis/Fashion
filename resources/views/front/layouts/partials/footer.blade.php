@@ -14,8 +14,8 @@
                                 Dhaka
                             </p>
                             <div class="block-content mb-30">
-                                <p class="contact">Call us: +123 2587 4521</p>
-                                <p class="contact">Email: support@fashionwave.com</p>
+                                <p class="contact">Call us: +880 1518 303 867</p>
+                                <p class="contact">Email: mufazzelanis@gmail.com</p>
                             </div>
                             <ul class="social-media">
                                 <li class="social-media-item">

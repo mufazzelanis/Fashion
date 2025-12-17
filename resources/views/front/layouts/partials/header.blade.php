@@ -14,11 +14,11 @@
                     <div class="row align-items-center">
                         <div class="col-lg-4">
                             <div class="header-top-left">
-                                <a href="tel:+777 2345 7886">
+                                <a href="tel:+8801518303867">
                                     <p class="contact-info">
                                         <i class="icon flaticon-phone"></i>
                                         Call Us:
-                                        +123 2587 7886
+                                        +880 1518 303 867
                                     </p>
                                 </a>
                             </div>
