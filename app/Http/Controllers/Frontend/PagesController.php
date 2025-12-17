@@ -5,13 +5,16 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
+use App\Models\Page;
 use App\Services\MailchimpService;
 
 class PagesController extends Controller
 {
     public function aboutUs()
     {
-        return view('front.pages.about-us');
+        $data = Page::where('slug', 'about-us')->first();
+
+        return view('front.pages.about-us', compact('data'));
     }
 
     // contact US Form store method
@@ -37,17 +40,23 @@ class PagesController extends Controller
 
     public function tremsCondition()
     {
-        return view('front.pages.trems-condition');
+        $data = Page::where('slug', 'terms-conditions')->first();
+
+        return view('front.pages.trems-condition', compact('data'));
     }
 
     public function privacyPolicy()
     {
-        return view('front.pages.privacy-policy');
+        $data = Page::where('slug', 'privacy-policy')->first();
+
+        return view('front.pages.privacy-policy', compact('data'));
     }
 
     public function contactUs()
     {
-        return view('front.pages.contact-us');
+        $data = Page::where('slug', 'contact-us')->first();
+
+        return view('front.pages.contact-us', compact('data'));
     }
 
     public function faq()

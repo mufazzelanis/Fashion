@@ -5,22 +5,22 @@
 <!-- hero-section area start here  -->
     <div class="hero-section">
         <div class="hero-slider">
+            @foreach ($sliders as $slider)
             <div class="signle-slide"
-                style="background-image: url('http://localhost/projects/ecom/frontend/assets/images/slider/slider.jpg');">
+              style="background-image: url('{{ asset('front/assets/images/slider/' . $slider->image) }}');">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-6 mb-5">
                             <div class="hero-slider-content text-center">
                                 <h2 class="slider-sub-title">
-                                    New Collection</h2>
+                                   {{$slider->title}}</h2>
                                 <h1 class="slider-title">
-                                    The New autmn
+                                     {{$slider->subtitle}}
                                 </h1>
                                 <p class="slider-text">
-                                    Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vivamus magna
-                                    justo, lacinia eget consectetur sed</p>
+                                     {{$slider->desc}}</p>
                                 <div class="slider-btn">
-                                    <a href="/product/all" class="secondary-btn">See Colections
+                                    <a href=" {{$slider->link}}" class="secondary-btn">See Colections
                                         <i class="iocn flaticon-right-arrow"></i></a>
                                 </div>
                             </div>
@@ -28,52 +28,9 @@
                     </div>
                 </div>
             </div>
-            <div class="signle-slide"
-                style="background-image: url('http://localhost/projects/ecom/frontend/assets/images/slider/slider.jpg');">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 col-6 mb-5">
-                            <div class="hero-slider-content text-center">
-                                <h2 class="slider-sub-title">
-                                    Summer Sale</h2>
-                                <h1 class="slider-title">
-                                    The Summer!!
-                                </h1>
-                                <p class="slider-text">
-                                    Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vivamus magna
-                                    justo, lacinia eget consectetur sed</p>
-                                <div class="slider-btn">
-                                    <a href="/product/all" class="secondary-btn">See Colections
-                                        <i class="iocn flaticon-right-arrow"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="signle-slide"
-                style="background-image: url('http://localhost/projects/ecom/frontend/assets/images/slider/slider.jpg');">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 col-6 mb-5">
-                            <div class="hero-slider-content text-center">
-                                <h2 class="slider-sub-title">
-                                    New Collection</h2>
-                                <h1 class="slider-title">
-                                    The Winter!!
-                                </h1>
-                                <p class="slider-text">
-                                    Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vivamus magna
-                                    justo, lacinia eget consectetur sed</p>
-                                <div class="slider-btn">
-                                    <a href="/product/all" class="secondary-btn">See Colections
-                                        <i class="iocn flaticon-right-arrow"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+
+
         </div>
     </div>
     <!-- hero-section area end here  -->
