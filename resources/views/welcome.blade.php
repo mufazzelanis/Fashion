@@ -30,7 +30,6 @@
             </div>
             @endforeach
 
-
         </div>
     </div>
     <!-- hero-section area end here  -->
