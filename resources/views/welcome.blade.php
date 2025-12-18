@@ -17,8 +17,8 @@
                                 <h1 class="slider-title">
                                      {{$slider->subtitle}}
                                 </h1>
-                                <p class="slider-text">
-                                     {{$slider->desc}}</p>
+                                {{-- <p class="slider-text">
+                                     {{$slider->desc}}</p> --}}
                                 <div class="slider-btn">
                                     <a href=" {{$slider->link}}" class="secondary-btn">See Colections
                                         <i class="iocn flaticon-right-arrow"></i></a>
@@ -368,39 +368,16 @@
                     </div>
                 </div>
             </div>
+            
             <div class="story-box-slide">
+                @foreach ($testimonials as $testimonial)
                 <div class="single-story-box">
-                    <img src="{{asset('front/assets/images/avatar.jpg')}}" class="avatar" alt="Testimonial">
-                    <h3 class="story-title">Rony <span class="story-year">Engineer</span>
-                    </h3>
-                    <p class="story-content">I recently discovered FashionWave, and I must say it's become my go-to for
-                        all things fashion! From trendy tops to chic dresses, the site offers a fantastic variety of
-                        clothing that feels both high-quality and reasonably priced. </p>
+                <img src="{{ asset('front/assets/images/'.$testimonial->image) }}" class="avatar">
+
+                    <h3 class="story-title">{{$testimonial->name}}</h3>
+                    <p class="story-content">{{$testimonial->review}}</p>
                 </div>
-                <div class="single-story-box">
-                    <img src="{{asset('front/assets/images/avatar2.jpg')}}" class="avatar" alt="Testimonial">
-                    <h3 class="story-title">Dholi <span class="story-year">IT Officer</span>
-                    </h3>
-                    <p class="story-content">I recently discovered FashionWave, and I must say it's become my go-to for
-                        all things fashion! From trendy tops to chic dresses, the site offers a fantastic variety of
-                        clothing that feels both high-quality and reasonably priced. </p>
-                </div>
-                <div class="single-story-box">
-                    <img src="{{asset('front/assets/images/avatar.jpg')}}" class="avatar" alt="Testimonial">
-                    <h3 class="story-title">Jakir <span class="story-year">CEO</span>
-                    </h3>
-                    <p class="story-content">I recently discovered FashionWave, and I must say it's become my go-to for
-                        all things fashion! From trendy tops to chic dresses, the site offers a fantastic variety of
-                        clothing that feels both high-quality and reasonably priced. </p>
-                </div>
-                <div class="single-story-box">
-                    <img src="{{asset('front/assets/images/avatar2.jpg')}}" class="avatar" alt="Testimonial">
-                    <h3 class="story-title">Nahar <span class="story-year">Programmer</span>
-                    </h3>
-                    <p class="story-content">I recently discovered FashionWave, and I must say it's become my go-to for
-                        all things fashion! From trendy tops to chic dresses, the site offers a fantastic variety of
-                        clothing that feels both high-quality and reasonably priced. </p>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

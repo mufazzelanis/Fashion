@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Faq;
+use App\Models\Page;
+use App\Models\Contact;
+use App\Services\MailchimpService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
-use App\Models\Contact;
-use App\Models\Page;
-use App\Services\MailchimpService;
 
 class PagesController extends Controller
 {
@@ -61,6 +62,7 @@ class PagesController extends Controller
 
     public function faq()
     {
-        return view('front.pages.faq');
+        $faqs = Faq::all();
+        return view('front.pages.faq', compact('faqs'));
     }
 }

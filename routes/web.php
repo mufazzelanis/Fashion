@@ -1,14 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\CartController;
-use App\Http\Controllers\Frontend\PagesController;
-use App\Http\Controllers\Frontend\CompareController;
-use App\Http\Controllers\Frontend\ProductController;
-use App\Http\Controllers\Frontend\WelcomeController;
 use App\Http\Controllers\Frontend\CheckoutController;
-use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\Frontend\CompareController;
+use App\Http\Controllers\Frontend\PagesController;
+use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Frontend\SubscriberController;
+use App\Http\Controllers\Frontend\WelcomeController;
+use App\Http\Controllers\Frontend\WishlistController;
+use Illuminate\Support\Facades\Route;
 
 // Frontend Welcome Route
 Route::get('/', [WelcomeController::class, 'index']);
@@ -30,3 +30,5 @@ Route::resource('carts', CartController::class);
 Route::resource('checkouts', CheckoutController::class);
 Route::resource('subscribers', SubscriberController::class);
 
+// testimonial routes
+Route::resource('testimonials', TestimonialController::class);
