@@ -18,7 +18,7 @@
                                     <p class="contact-info">
                                         <i class="icon flaticon-phone"></i>
                                         Call Us:
-                                        +880 1518 303 867
+                                        {{get_setting('phone')}}
                                     </p>
                                 </a>
                             </div>
@@ -76,7 +76,7 @@
                     <div class="header-middle-wrap">
                         <div class="brand-area">
                             <a class="brand-logo" href="{{url('/')}}"><img class="brand-image"
-                                    src="{{asset('front/assets/images/logo.png')}}" alt="Fashionwave" /></a>
+                                    src="{{asset('front/assets/images/'.get_setting('logo'))}}" alt="Fashionwave" /></a>
                         </div>
                         <div class="search-area">
                             <form action="#" method="get">
@@ -221,7 +221,7 @@
     <div class="offcanvas offcanvas-start menu-offcanvas" tabindex="-1" id="offcanvasMobileMenu">
         <div class="mobile-menu-area">
             <div class="offcanvas-header">
-                <a class="brand-logo" href="http://127.0.0.1:8000"><img class="brand-image" src="{{asset('front/assets/images/logo.png')}}"
+                <a class="brand-logo" href="http://127.0.0.1:8000"><img class="brand-image" src="{{asset('front/assets/images/'.get_setting('logo'))}}"
                         alt="Fashionwave" /></a>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>

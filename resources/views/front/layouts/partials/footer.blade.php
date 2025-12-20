@@ -6,16 +6,14 @@
                 <div class="row">
                     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4">
                         <div class="single-widget about-widget">
-                            <a href="http://127.0.0.1:8000" class="footer-brand-logo mb-25"><img
-                                    src="{{asset('front/assets/images/logo.png')}}" alt="footer-logo" /></a>
+                            <a href="{{url('/')}}" class="footer-brand-logo mb-25"><img
+                                    src="{{asset('front/assets/images/'.get_setting('logo'))}}" alt="footer-logo" /></a>
                             <p class="address-text">
-                                House 24, Road 17 <br />
-                                Banani, <br />
-                                Dhaka
+                          {{get_setting('address')}}
                             </p>
                             <div class="block-content mb-30">
-                                <p class="contact">Call us: +880 1518 303 867</p>
-                                <p class="contact">Email: mufazzelanis@gmail.com</p>
+                                <p class="contact">Call us: {{get_setting('phone')}}</p>
+                                <p class="contact">Email: {{get_setting('email')}}</p>
                             </div>
                             <ul class="social-media">
                                 <li class="social-media-item">

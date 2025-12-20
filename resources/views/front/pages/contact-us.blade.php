@@ -33,7 +33,7 @@
                                     alt="contact-info" />
                                 <h3 class="contact-info-title">Email</h3>
                                 <p class="contact-info-content">
-                                    support@fashionwave.com
+                                    {{get_setting('email')}}
 
                                 </p>
                             </div>
@@ -45,9 +45,7 @@
                                     alt="contact-info" />
                                 <h3 class="contact-info-title">Address</h3>
                                 <p class="contact-info-content">
-                                    House 24, Road 17 <br />
-                                    Banani-1213
-                                    Bangladesh
+                                    {{get_setting('address')}}
                                 </p>
                             </div>
                         </div>
@@ -58,7 +56,7 @@
                                     alt="contact-info" />
                                 <h3 class="contact-info-title">Phone</h3>
                                 <p class="contact-info-content">
-                                    +123 2587 1456
+                                    {{get_setting()->phone}}
                                 </p>
                             </div>
                         </div>

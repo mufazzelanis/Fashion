@@ -3,9 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Database\Seeders\FaqSeeder;
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,6 +27,7 @@ class DatabaseSeeder extends Seeder
             SliderSeeder::class,
             TestimonialSeeder::class,
             FaqSeeder::class,
+            SettingSeeder::class,
         ]);
     }
 }
