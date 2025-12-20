@@ -28,11 +28,11 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="heading1">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                    data-bs-target="#collapse{{ $faq->id }}" aria-expanded="true" aria-controls="collapse1">
                                    {{$faq->en_question}}
                                 </button>
                             </h2>
-                            <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="heading1"
+                            <div id="collapse{{ $faq->id }}" class="accordion-collapse collapse show" aria-labelledby="heading1"
                                 data-bs-parent="#accordionFaq">
                                 <div class="accordion-body">
                                     <p class="faq-text">{{$faq->en_answer}}</p>
