@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 
@@ -16,4 +17,16 @@ if (! function_exists('get_setting')) {
 
         return $key ? ($setting->{$key} ?? $default) : $setting;
     }
+
+    if (! function_exists('get_categories')) {
+        function get_categories()
+        {
+            return Category::where('status', 1)
+                ->orderBy('en_category_name', 'ASC')->limit(6)
+                ->get();
+
+        }
+
+    }
+
 }

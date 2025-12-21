@@ -1,15 +1,19 @@
 @extends('front.layouts.app')
 
+@section('title', $data->meta_title)
+@section('description', $data->meta_description)
+@section('keywords', $data->meta_keywords)
+
 @section('content')
 
     <!-- breadcrumb area start here  -->
     <div class="breadcrumb-area">
         <div class="container">
             <div class="breadcrumb-wrap text-center">
-                <h2 class="page-title">Faq</h2>
+                <h2 class="page-title">{{$data->title ?? ""}}</h2>
                 <ul class="breadcrumb-pages">
                     <li class="page-item"><a class="page-item-link" href="http://127.0.0.1:8000">Home</a></li>
-                    <li class="page-item">Faq</li>
+                    <li class="page-item">{{$data->title ?? ""}}</li>
                 </ul>
             </div>
         </div>
@@ -32,7 +36,7 @@
                                    {{$faq->en_question}}
                                 </button>
                             </h2>
-                            <div id="collapse{{ $faq->id }}" class="accordion-collapse collapse show" aria-labelledby="heading1"
+                            <div id="collapse{{ $faq->id }}" class="accordion-collapse collapse @if ($faq->id == 1) show @endif" aria-labelledby="heading1"
                                 data-bs-parent="#accordionFaq">
                                 <div class="accordion-body">
                                     <p class="faq-text">{{$faq->en_answer}}</p>

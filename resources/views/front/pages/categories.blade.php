@@ -19,27 +19,44 @@
     </div>
     <!-- breadcrumb area end here  -->
 
-    <!-- about us area start here  -->
-    <div class="about-us-area section">
+    <div class="popular-categories-area section-bg section-top pb-100">
         <div class="container">
-            <div class="row align-items-lg-center">
-                <div class="col-lg-5 offset-lg-1 col-md-6">
-                    <div class="about-us-image">
-                        <img src="{{asset('front/assets/images/about_us_page/'.$data->image)}}" alt="about us image" />
+            <div class="section-header-area">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3 class="sub-title">
+                            Popular Collections
+                        </h3>
+                        <h2 class="section-title">
+                            Popular Categories
+                        </h2>
                     </div>
-                </div>
-                <div class="col-lg-5 col-md-6">
-                    <div class="about-us-content">
-                        <div class="section-header-area">
-                            {{-- <h3 class="sub-title">{{$data->title ?? ""}}</h3> --}}
-                            <h2 class="section-title">{{$data->title ?? ""}}</h2>
-                        </div>
-                        <p class="about-us-text">{{$data->description ?? ""}}</p>
-                        
+                    <div class="col-md-6 align-self-end text-md-end">
+                        <a href="{{ route('products.index') }}" class="primary-btn">View All Products</a>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                @foreach ($categories as $category)
+                <div class="col-lg-4 col-md-6">
+                    <a class="single-categorie" href="/product/category/5">
+                        <div class="categorie-wrap">
+                            <div class="categorie-icon">
+                                {{-- <i class="icon flaticon-blazer"></i> --}}
+                                <img src="{{ asset('front/assets/images/' . $category->icon) }}" />
+                            </div>
+                            <div class="categorie-info">
+                                <h3 class="categorie-name">
+                                    {{ $category->en_category_name ?? "" }}</h3>
+                                <h4 class="categorie-subtitle">
+                                    {{ $category->en_short_info ?? "" }}</h4>
+                            </div>
+                        </div>
+                        <i class="arrow flaticon-right-arrow"></i>
+                    </a>
+                </div>
+                @endforeach
+            </div>
         </div>
     </div>
-    <!-- about us area end here  -->
 @endsection

@@ -15,7 +15,7 @@ class TestimonialFactory extends Factory
             'name' => $this->faker->name,
             'review' => $this->faker->paragraph(3),
             'image' => 'avatar.jpg',
-            'status' => $this->faker->randomElement([0, 1]),
+            'status' => $this->faker->randomElement([1]),
             'created_at' => now(),
             'updated_at' => now(),
         ];

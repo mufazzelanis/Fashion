@@ -12,8 +12,8 @@ return new class extends Migration
             $table->id();
 
             // Foreign keys
-            $table->foreignId('category_id')->constrained();
-            $table->foreignId('brand_id')->constrained();
+            $table->foreignId('category_id')->constrained('categories');
+            $table->foreignId('brand_id')->constrained('brands');
 
             // Product basic info
             $table->string('en_name');
@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('en_desc')->nullable();
             $table->text('en_shipping')->nullable();
             $table->text('en_additionalinfo')->nullable();
+            $table->text('thumb')->nullable();
 
             // Flags
             $table->boolean('is_featured')->default(false);
