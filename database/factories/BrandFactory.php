@@ -16,6 +16,7 @@ class BrandFactory extends Factory
 
         return [
             'en_brand_name' => $name,
+            'prd_count' => $this->faker->numberBetween(0, 1000),
             'slug' => Str::slug($name).'-'.Str::random(5),
             'image' => 'tshirt.png', // or you can use faker image if you want
             'status' => $this->faker->boolean(90), // 90% chance to be active

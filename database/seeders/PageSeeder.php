@@ -77,6 +77,17 @@ class PageSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'title' => 'Shop',
+                'slug' => 'shop',
+                'description' => 'These terms and conditions outline the rules and regulations for using our website.',
+                'image' => null,
+                'meta_title' => 'Shop - Company Name',
+                'meta_description' => 'Understand the shop before using our services.',
+                'meta_keywords' => 'shop, shopping, rules',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
 
         // Optional: generate 5 random pages using factory

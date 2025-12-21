@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
+use App\Models\Page;
+use App\Models\Brand;
 use App\Models\Product;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use App\Models\Category;
+use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
     // READ ALL
     public function index()
     {
-        // $product = Product::all();
-
-        return view('front.products.index');
-
+        $categories = Category::where('status', 1)->get();
+        $brands = Brand::where('status', 1)->get();
+        $products = Product::where('status', 1)->paginate(6);
+        $data = Page::where('slug', 'shop')->first();
+        return view('front.products.index', compact('categories', 'brands', 'products', 'data'));
     }
 
     // // READ SINGLE

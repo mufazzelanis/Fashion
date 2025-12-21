@@ -21,10 +21,10 @@ class WelcomeController extends Controller
             ->get();
         $products = Product::where('status', 1)->latest()->take(4)->get();
 
-        $data['featured'] = Product::where(['status', 1], ['is_featured', 1])->latest()->take(4)->get();
-        $data['onsale'] = Product::where(['status', 1], ['is_onsale', 1])->latest()->take(4)->get();
-        $data['bestselling'] = Product::where(['status', 1], ['is_best_selling', 1])->latest()->take(4)->get();
-        $data['newarrival'] = Product::where(['status', 1], ['is_new_arrival', 1])->latest()->take(4)->get();
+        $data['featured'] = Product::where('status', 1)->where('is_featured', 1)->latest()->take(4)->get();
+        $data['onsale'] = Product::where('status', 1)->where('is_onsale', 1)->latest()->take(4)->get();
+        $data['bestselling'] = Product::where('status', 1)->where('is_best_selling', 1)->latest()->take(4)->get();
+        $data['newarrival'] = Product::where('status', 1)->where('is_new_arrival', 1)->latest()->take(4)->get();
 
         return view('welcome', compact('sliders', 'testimonials', 'categories', 'products', 'data'));
     }

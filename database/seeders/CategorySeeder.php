@@ -16,6 +16,7 @@ class CategorySeeder extends Seeder
         Category::create([
             'en_category_name' => 'Men Fashion',
             'en_short_info'    => 'Trendy fashion for men',
+            'prd_count'        => '150',
             'slug'             => 'men-fashion',
             'icon'             => 'blezer.png',
             'desc'             => 'All kinds of men fashion items available here.',

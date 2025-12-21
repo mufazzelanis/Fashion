@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
             $table->string('en_brand_name');
+            $table->string('prd_count');
             $table->string('slug')->unique();
             $table->string('image')->nullable();
             $table->boolean('status')->default(1);
