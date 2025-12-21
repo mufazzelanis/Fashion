@@ -4,6 +4,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CompareController;
 use App\Http\Controllers\Frontend\PagesController;
+use App\Http\Controllers\Frontend\CategoryController;
 use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Frontend\SubscriberController;
 use App\Http\Controllers\Frontend\WelcomeController;
@@ -20,6 +21,7 @@ Route::get('/privacy-policy', [PagesController::class, 'privacyPolicy'])->name('
 Route::get('/contact-us', [PagesController::class, 'contactUs'])->name('contact.us');
 Route::post('/contact-us', [PagesController::class, 'storeContact'])->name('contact.store');
 Route::get('/faq', [PagesController::class, 'faq'])->name('faq');
+Route::get('/categories', [CategoryController::class, 'index'])->name('category.all');
 
 // product routes
 

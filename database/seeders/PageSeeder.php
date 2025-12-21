@@ -55,6 +55,17 @@ class PageSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'title' => 'Categories',
+                'slug' => 'categories',
+                'description' => 'These terms and conditions outline the rules and regulations for using our website.',
+                'image' => null,
+                'meta_title' => 'Categories - Company Name',
+                'meta_description' => 'Understand the categories before using our services.',
+                'meta_keywords' => 'categories, category, rules',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
 
         // Optional: generate 5 random pages using factory
