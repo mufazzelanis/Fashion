@@ -20,6 +20,12 @@ class ProductController extends Controller
         return view('front.products.index', compact('categories', 'brands', 'products', 'data'));
     }
 
+    public function productDetails($slug)
+    {
+        $product = Product::where('slug', $slug)->first();
+        return view('front.products.details', compact('product'));
+    }
+
     // // READ SINGLE
     // public function show(Product $product)
     // {
