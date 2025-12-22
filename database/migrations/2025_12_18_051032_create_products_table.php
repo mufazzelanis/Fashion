@@ -12,10 +12,10 @@ return new class extends Migration
             $table->id();
 
             // Foreign keys
-            $table->foreignId('category_id')->constrained('categories');
-            $table->foreignId('brand_id')->constrained('brands');
+            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
+            $table->foreignId('brand_id')->constrained('brands')->cascadeOnDelete();
 
-            // Product basic info
+            // Basic info
             $table->string('en_name');
             $table->string('slug')->unique();
 
@@ -23,7 +23,9 @@ return new class extends Migration
             $table->text('en_desc')->nullable();
             $table->text('en_shipping')->nullable();
             $table->text('en_additionalinfo')->nullable();
-            $table->text('thumb')->nullable();
+
+            // Images
+            $table->string('thumb')->nullable();
 
             // Flags
             $table->boolean('is_featured')->default(false);
@@ -36,8 +38,16 @@ return new class extends Migration
             $table->decimal('discount', 10, 2)->nullable();
             $table->decimal('discounted_price', 10, 2)->nullable();
 
-            // Stock & status
+            // Stock & delivery
             $table->integer('quantity')->default(0);
+            $table->string('delivery_duration')->nullable();
+
+            // SEO Meta
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->text('meta_keywords')->nullable();
+
+            // Status
             $table->boolean('status')->default(true);
 
             $table->timestamps();

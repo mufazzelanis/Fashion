@@ -213,13 +213,10 @@
                                     <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
                                         <div class="single-grid-product">
                                             <div class="product-top">
-                                                <a href="{{ route('product.details', $product->slug) }}"><img class="product-thumbnal"
+                                                <a href="{{ route('product.details', $product->slug) }}"><img
+                                                        class="product-thumbnal"
                                                         src="{{ asset('front/assets/images/products/' . $product->thumb) }}"
                                                         alt="product" /></a>
-                                                {{-- <div class="product-flags">
-                                <span class="product-flag sale">NEW</span>
-                                <span class="product-flag discount">-10.00</span>
-                            </div> --}}
                                                 <ul class="prdouct-btn-wrapper">
                                                     <li class="single-product-btn">
                                                         <a class="product-btn CompareList" data-id="11"

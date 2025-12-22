@@ -38,6 +38,10 @@ class ProductFactory extends Factory
             'discount' => $discount,
             'discounted_price' => $discountedPrice,
             'quantity' => $this->faker->numberBetween(0, 100),
+            'delivery_duration' => $this->faker->randomElement(['1-2 Days', '2-3 Days', '3-5 Days']),
+            'meta_title' => $this->faker->sentence(6),
+            'meta_description' => $this->faker->sentence(15),
+            'meta_keywords' => implode(',', $this->faker->words(5)),
             'status' => $this->faker->boolean(90),
         ];
     }

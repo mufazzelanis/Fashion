@@ -25,6 +25,10 @@ class Product extends Model
         'discount',
         'discounted_price',
         'quantity',
+        'delivery_duration',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
         'status',
     ];
 
