@@ -20,14 +20,13 @@ class CategoryFactory extends Factory
             'en_short_info' => $this->faker->sentence(6),
             'prd_count' => $this->faker->numberBetween(0, 1000),
             'slug' => Str::slug($name),
-            'icon' => null,
+            'icon' => 'blezer.png',
             'desc' => $this->faker->paragraph(),
             'status' => $this->faker->boolean(90), // mostly active
             'created_at' => now(),
             'updated_at' => now(),
         ];
     }
-
 
     public function withProducts($count = 5)
     {

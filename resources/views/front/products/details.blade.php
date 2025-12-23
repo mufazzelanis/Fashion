@@ -1,19 +1,27 @@
 @extends('front.layouts.app')
 
-@section('title', $data->meta_title)
-@section('description', $data->meta_description)
-@section('keywords', $data->meta_keywords)
+@section('title', $product->meta_title)
+@section('description', $product->meta_description)
+@section('keywords', $product->meta_keywords)
 
-@section('content')    
-<!-- breadcrumb area start here  -->
+@push('meta')
+    <meta property="og:title" content="{{ $product->meta_title ?? $product->name }}">
+    <meta property="og:description" content="{{ $product->meta_description ?? Str::limit($product->en_desc, 150) }}">
+    <meta property="og:image" content="{{ asset('front/assets/images/products/' . $product->thumb) }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="product">
+@endpush
+
+@section('content')
+    <!-- breadcrumb area start here  -->
     <div class="breadcrumb-area">
         <div class="container">
             <div class="breadcrumb-wrap text-center">
-                <h2 class="page-title">{{$data->title ?? ""}}</h2>
+                <h2 class="page-title">{{ $data->title ?? '' }}</h2>
                 <ul class="breadcrumb-pages">
                     <li class="page-item"><a class="page-item-link" href="http://127.0.0.1:8000">Home</a>
                     </li>
-                    <li class="page-item">{{$data->title ?? ""}}</li>
+                    <li class="page-item">{{ $data->title ?? '' }}</li>
                 </ul>
             </div>
         </div>
@@ -254,7 +262,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="single-grid-product">
                             <div class="product-top">
-                                <a href="{{ route('product.details', $product->slug) }}"><img class="product-thumbnal"
+                                <a href="{{ route('product.details', $relatedProduct->slug) }}"><img class="product-thumbnal"
                                         src="{{ asset('front/assets/images/products/' . $product->thumb) }}"
                                         alt="product" /></a>
                                 <ul class="prdouct-btn-wrapper">
@@ -273,7 +281,7 @@
                                     {{ $relatedProduct->category->en_category_name }}</h4>
                                 <input type="hidden" name="quantity" value="1" id="product_quantity">
                                 <h3 class="product-name"><a class="product-link"
-                                        href="/product/single/fit-flare-dress-2">{{ $relatedProduct->en_name ?? '' }}</a>
+                                        href="{{ route('product.details', $relatedProduct->slug) }}">{{ $relatedProduct->en_name ?? '' }}</a>
                                 </h3>
                                 <!-- This is server side code. User can not modify it. -->
                                 <ul class="product-review">

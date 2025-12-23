@@ -1,40 +1,39 @@
-
 @extends('front.layouts.app')
 
 @php
-    $featured =  $data['featured'] ?? [];
-    $onsale =  $data['onsale'] ?? [];
-    $bestselling =  $data['bestselling'] ?? [];
-    $newarrival =  $data['newarrival'] ?? [];
+    $featured = $data['featured'] ?? [];
+    $onsale = $data['onsale'] ?? [];
+    $bestselling = $data['bestselling'] ?? [];
+    $newarrival = $data['newarrival'] ?? [];
 @endphp
 
 @section('content')
-<!-- hero-section area start here  -->
+    <!-- hero-section area start here  -->
     <div class="hero-section">
         <div class="hero-slider">
             @foreach ($sliders as $slider)
-            <div class="signle-slide"
-              style="background-image: url('{{ asset('front/assets/images/slider/' . $slider->image) }}');">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 col-6 mb-5">
-                            <div class="hero-slider-content text-center">
-                                <h2 class="slider-sub-title">
-                                   {{$slider->title}}</h2>
-                                <h1 class="slider-title">
-                                     {{$slider->subtitle}}
-                                </h1>
-                                {{-- <p class="slider-text">
+                <div class="signle-slide"
+                    style="background-image: url('{{ asset('front/assets/images/slider/' . $slider->image) }}');">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 col-6 mb-5">
+                                <div class="hero-slider-content text-center">
+                                    <h2 class="slider-sub-title">
+                                        {{ $slider->title }}</h2>
+                                    <h1 class="slider-title">
+                                        {{ $slider->subtitle }}
+                                    </h1>
+                                    {{-- <p class="slider-text">
                                      {{$slider->desc}}</p> --}}
-                                <div class="slider-btn">
-                                    <a href=" {{$slider->link}}" class="secondary-btn">See Colections
-                                        <i class="iocn flaticon-right-arrow"></i></a>
+                                    <div class="slider-btn">
+                                        <a href=" {{ $slider->link }}" class="secondary-btn">See Colections
+                                            <i class="iocn flaticon-right-arrow"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             @endforeach
 
         </div>
@@ -60,26 +59,26 @@
             </div>
             <div class="row">
                 @foreach ($categories as $category)
-                <div class="col-lg-4 col-md-6">
-                    <a class="single-categorie" href="/product/category/5">
-                        <div class="categorie-wrap">
-                            <div class="categorie-icon">
-                                {{-- <i class="icon flaticon-blazer"></i> --}}
-                                <img src="{{ asset('front/assets/images/' . $category->icon) }}" />
+                    <div class="col-lg-4 col-md-6">
+                        <a class="single-categorie" href="/product/category/5">
+                            <div class="categorie-wrap">
+                                <div class="categorie-icon">
+                                    {{-- <i class="icon flaticon-blazer"></i> --}}
+                                    <img src="{{ asset('front/assets/images/' . $category->icon) }}" />
+                                </div>
+                                <div class="categorie-info">
+                                    <h3 class="categorie-name">
+                                        {{ $category->en_category_name ?? '' }}</h3>
+                                    <h4 class="categorie-subtitle">
+                                        {{ $category->en_short_info ?? '' }}</h4>
+                                </div>
                             </div>
-                            <div class="categorie-info">
-                                <h3 class="categorie-name">
-                                    {{ $category->en_category_name ?? "" }}</h3>
-                                <h4 class="categorie-subtitle">
-                                    {{ $category->en_short_info ?? "" }}</h4>
-                            </div>
-                        </div>
-                        <i class="arrow flaticon-right-arrow"></i>
-                    </a>
-                </div>
+                            <i class="arrow flaticon-right-arrow"></i>
+                        </a>
+                    </div>
                 @endforeach
                 <div class="category-btn text-center mt-4">
-                <a href="{{ route('category.all') }}" class="primary-btn">Show all categories</a>
+                    <a href="{{ route('category.all') }}" class="primary-btn">Show all categories</a>
                 </div>
             </div>
         </div>
@@ -106,49 +105,52 @@
             </div>
             <div class="row">
                 @foreach ($products as $product)
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-grid-product">
-                        <div class="product-top">
-                            <a href="/product/single/fit-flare-dress-2"><img class="product-thumbnal"
-                                    src="{{asset('front/assets/images/products/'.$product->thumb)}}" alt="product" /></a>
-                            {{-- <div class="product-flags">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-grid-product">
+                            <div class="product-top">
+                                <a href="{{ route('product.details', $product->slug) }}"><img class="product-thumbnal"
+                                        src="{{ asset('front/assets/images/products/' . $product->thumb) }}"
+                                        alt="product" /></a>
+                                {{-- <div class="product-flags">
                                 <span class="product-flag sale">NEW</span>
                                 <span class="product-flag discount">-10.00</span>
                             </div> --}}
-                            <ul class="prdouct-btn-wrapper">
-                                <li class="single-product-btn">
-                                    <a class="product-btn CompareList" data-id="11" title="Add To Compare"><i
-                                            class="icon flaticon-bar-chart"></i></a>
-                                </li>
-                                <li class="single-product-btn">
-                                    <a class="product-btn MyWishList" data-id="11" title="Add To Wishlist"><i
-                                            class="icon flaticon-like"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-info text-center">
-                            <h4 class="product-catagory">{{ $product->brand->en_brand_name }} - {{ $product->category->en_category_name }}</h4>
-                            <input type="hidden" name="quantity" value="1" id="product_quantity">
-                            <h3 class="product-name"><a class="product-link"
-                                    href="/product/single/fit-flare-dress-2">{{ $product->en_name ?? "" }}</a>
-                            </h3>
-                            <!-- This is server side code. User can not modify it. -->
-                            <ul class="product-review">
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                            </ul>
-                            <div class="product-price">
-                                <span class="regular-price">{{ $product->price ?? "" }}</span>
-                                <span class="price">$ {{ $product->discounted_price }}</span>
+                                <ul class="prdouct-btn-wrapper">
+                                    <li class="single-product-btn">
+                                        <a class="product-btn CompareList" data-id="11" title="Add To Compare"><i
+                                                class="icon flaticon-bar-chart"></i></a>
+                                    </li>
+                                    <li class="single-product-btn">
+                                        <a class="product-btn MyWishList" data-id="11" title="Add To Wishlist"><i
+                                                class="icon flaticon-like"></i></a>
+                                    </li>
+                                </ul>
                             </div>
-                            <a href="javascript:void(0)" title="Add To Cart" class="add-cart addCart" data-id="11">Add
-                                To Cart <i class="icon fas fa-plus-circle"></i></a>
+                            <div class="product-info text-center">
+                                <h4 class="product-catagory">{{ $product->brand->en_brand_name }} -
+                                    {{ $product->category->en_category_name }}</h4>
+                                <input type="hidden" name="quantity" value="1" id="product_quantity">
+                                <h3 class="product-name"><a class="product-link"
+                                        href="{{ route('product.details', $product->slug) }}">{{ $product->en_name ?? '' }}</a>
+                                </h3>
+                                <!-- This is server side code. User can not modify it. -->
+                                <ul class="product-review">
+                                    <li class="review-item"><i class="flaticon-star"></i></li>
+                                    <li class="review-item"><i class="flaticon-star"></i></li>
+                                    <li class="review-item"><i class="flaticon-star"></i></li>
+                                    <li class="review-item"><i class="flaticon-star"></i></li>
+                                    <li class="review-item"><i class="flaticon-star"></i></li>
+                                </ul>
+                                <div class="product-price">
+                                    <span class="regular-price">{{ $product->price ?? '' }}</span>
+                                    <span class="price">$ {{ $product->discounted_price }}</span>
+                                </div>
+                                <a href="javascript:void(0)" title="Add To Cart" class="add-cart addToCart"
+                                    data-id="{{ $product->id }}">Add
+                                    To Cart <i class="icon fas fa-plus-circle"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
 
             </div>
@@ -172,15 +174,15 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="story-box-slide">
                 @foreach ($testimonials as $testimonial)
-                <div class="single-story-box">
-                <img src="{{ asset('front/assets/images/'.$testimonial->image) }}" class="avatar">
+                    <div class="single-story-box">
+                        <img src="{{ asset('front/assets/images/' . $testimonial->image) }}" class="avatar">
 
-                    <h3 class="story-title">{{$testimonial->name}}</h3>
-                    <p class="story-content">{{$testimonial->review}}</p>
-                </div>
+                        <h3 class="story-title">{{ $testimonial->name }}</h3>
+                        <p class="story-content">{{ $testimonial->review }}</p>
+                    </div>
                 @endforeach
             </div>
         </div>
@@ -231,204 +233,220 @@
             <div class="tab-content" id="TrendingProductsContent">
                 <div class="tab-pane fade show active" id="new-arrival" role="tabpanel"
                     aria-labelledby="new-arrival-tab">
-            <div class="row">
-                @foreach ($newarrival as $newarrival)
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-grid-product">
-                        <div class="product-top">
-                            <a href="/product/single/fit-flare-dress-2"><img class="product-thumbnal"
-                                    src="{{asset('front/assets/images/products/'.$newarrival->thumb)}}" alt="product" /></a>
-                            {{-- <div class="product-flags">
+                    <div class="row">
+                        @foreach ($newarrival as $newarrival)
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="single-grid-product">
+                                    <div class="product-top">
+                                        <a href="{{ route('product.details', $newarrival->slug) }}"><img
+                                                class="product-thumbnal"
+                                                src="{{ asset('front/assets/images/products/' . $newarrival->thumb) }}"
+                                                alt="product" /></a>
+                                        {{-- <div class="product-flags">
                                 <span class="product-flag sale">NEW</span>
                                 <span class="product-flag discount">-10.00</span>
                             </div> --}}
-                            <ul class="prdouct-btn-wrapper">
-                                <li class="single-product-btn">
-                                    <a class="product-btn CompareList" data-id="11" title="Add To Compare"><i
-                                            class="icon flaticon-bar-chart"></i></a>
-                                </li>
-                                <li class="single-product-btn">
-                                    <a class="product-btn MyWishList" data-id="11" title="Add To Wishlist"><i
-                                            class="icon flaticon-like"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-info text-center">
-                            <h4 class="product-catagory">{{ $newarrival->brand->en_brand_name }} - {{ $newarrival->category->en_category_name }}</h4>
-                            <input type="hidden" name="quantity" value="1" id="product_quantity">
-                            <h3 class="product-name"><a class="product-link"
-                                    href="/product/single/fit-flare-dress-2">{{ $newarrival->en_name ?? "" }}</a>
-                            </h3>
-                            <!-- This is server side code. User can not modify it. -->
-                            <ul class="product-review">
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                            </ul>
-                            <div class="product-price">
-                                <span class="regular-price">{{ $newarrival->price ?? "" }}</span>
-                                <span class="price">$ {{ $newarrival->discounted_price }}</span>
+                                        <ul class="prdouct-btn-wrapper">
+                                            <li class="single-product-btn">
+                                                <a class="product-btn CompareList" data-id="11"
+                                                    title="Add To Compare"><i class="icon flaticon-bar-chart"></i></a>
+                                            </li>
+                                            <li class="single-product-btn">
+                                                <a class="product-btn MyWishList" data-id="11"
+                                                    title="Add To Wishlist"><i class="icon flaticon-like"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="product-info text-center">
+                                        <h4 class="product-catagory">{{ $newarrival->brand->en_brand_name }} -
+                                            {{ $newarrival->category->en_category_name }}</h4>
+                                        <input type="hidden" name="quantity" value="1" id="product_quantity">
+                                        <h3 class="product-name"><a class="product-link"
+                                                href="{{ route('product.details', $newarrival->slug) }}">{{ $newarrival->en_name ?? '' }}</a>
+                                        </h3>
+                                        <!-- This is server side code. User can not modify it. -->
+                                        <ul class="product-review">
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                        </ul>
+                                        <div class="product-price">
+                                            <span class="regular-price">{{ $newarrival->price ?? '' }}</span>
+                                            <span class="price">$ {{ $newarrival->discounted_price }}</span>
+                                        </div>
+                                        <a href="javascript:void(0)" title="Add To Cart" class="add-cart addToCart"
+                                            data-id="{{ $newarrival->id }}">Add
+                                            To Cart <i class="icon fas fa-plus-circle"></i></a>
+                                    </div>
+                                </div>
                             </div>
-                            <a href="javascript:void(0)" title="Add To Cart" class="add-cart addCart" data-id="11">Add
-                                To Cart <i class="icon fas fa-plus-circle"></i></a>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
+                        @endforeach
 
-            </div>
+                    </div>
                 </div>
                 <div class="tab-pane fade " id="best-selling" role="tabpanel" aria-labelledby="best-selling-tab">
-            <div class="row">
-                @foreach ($bestselling as $bestselling)
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-grid-product">
-                        <div class="product-top">
-                            <a href="/product/single/fit-flare-dress-2"><img class="product-thumbnal"
-                                    src="{{asset('front/assets/images/products/'.$bestselling->thumb)}}" alt="product" /></a>
-                            {{-- <div class="product-flags">
+                    <div class="row">
+                        @foreach ($bestselling as $bestselling)
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="single-grid-product">
+                                    <div class="product-top">
+                                        <a href="{{ route('product.details', $bestselling->slug) }}"><img
+                                                class="product-thumbnal"
+                                                src="{{ asset('front/assets/images/products/' . $bestselling->thumb) }}"
+                                                alt="product" /></a>
+                                        {{-- <div class="product-flags">
                                 <span class="product-flag sale">NEW</span>
                                 <span class="product-flag discount">-10.00</span>
                             </div> --}}
-                            <ul class="prdouct-btn-wrapper">
-                                <li class="single-product-btn">
-                                    <a class="product-btn CompareList" data-id="11" title="Add To Compare"><i
-                                            class="icon flaticon-bar-chart"></i></a>
-                                </li>
-                                <li class="single-product-btn">
-                                    <a class="product-btn MyWishList" data-id="11" title="Add To Wishlist"><i
-                                            class="icon flaticon-like"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-info text-center">
-                            <h4 class="product-catagory">{{ $bestselling->brand->en_brand_name }} - {{ $bestselling->category->en_category_name }}</h4>
-                            <input type="hidden" name="quantity" value="1" id="product_quantity">
-                            <h3 class="product-name"><a class="product-link"
-                                    href="/product/single/fit-flare-dress-2">{{ $bestselling->en_name ?? "" }}</a>
-                            </h3>
-                            <!-- This is server side code. User can not modify it. -->
-                            <ul class="product-review">
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                            </ul>
-                            <div class="product-price">
-                                <span class="regular-price">{{ $bestselling->price ?? "" }}</span>
-                                <span class="price">$ {{ $bestselling->discounted_price }}</span>
+                                        <ul class="prdouct-btn-wrapper">
+                                            <li class="single-product-btn">
+                                                <a class="product-btn CompareList" data-id="11"
+                                                    title="Add To Compare"><i class="icon flaticon-bar-chart"></i></a>
+                                            </li>
+                                            <li class="single-product-btn">
+                                                <a class="product-btn MyWishList" data-id="11"
+                                                    title="Add To Wishlist"><i class="icon flaticon-like"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="product-info text-center">
+                                        <h4 class="product-catagory">{{ $bestselling->brand->en_brand_name }} -
+                                            {{ $bestselling->category->en_category_name }}</h4>
+                                        <input type="hidden" name="quantity" value="1" id="product_quantity">
+                                        <h3 class="product-name"><a class="product-link"
+                                                href="{{ route('product.details', $bestselling->slug) }}">{{ $bestselling->en_name ?? '' }}</a>
+                                        </h3>
+                                        <!-- This is server side code. User can not modify it. -->
+                                        <ul class="product-review">
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                        </ul>
+                                        <div class="product-price">
+                                            <span class="regular-price">{{ $bestselling->price ?? '' }}</span>
+                                            <span class="price">$ {{ $bestselling->discounted_price }}</span>
+                                        </div>
+                                        <a href="javascript:void(0)" title="Add To Cart" class="add-cart addToCart"
+                                            data-id="{{ $bestselling->id }}">Add
+                                            To Cart <i class="icon fas fa-plus-circle"></i></a>
+                                    </div>
+                                </div>
                             </div>
-                            <a href="javascript:void(0)" title="Add To Cart" class="add-cart addCart" data-id="11">Add
-                                To Cart <i class="icon fas fa-plus-circle"></i></a>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
+                        @endforeach
 
-            </div>
+                    </div>
                 </div>
                 <div class="tab-pane fade " id="on-sell" role="tabpanel" aria-labelledby="on-sell-tab">
-            <div class="row">
-                @foreach ($onsale as $onsale)
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-grid-product">
-                        <div class="product-top">
-                            <a href="/product/single/fit-flare-dress-2"><img class="product-thumbnal"
-                                    src="{{asset('front/assets/images/products/'.$onsale->thumb)}}" alt="product" /></a>
-                            {{-- <div class="product-flags">
+                    <div class="row">
+                        @foreach ($onsale as $onsale)
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="single-grid-product">
+                                    <div class="product-top">
+                                        <a href="{{ route('product.details', $onsale->slug) }}"><img
+                                                class="product-thumbnal"
+                                                src="{{ asset('front/assets/images/products/' . $onsale->thumb) }}"
+                                                alt="product" /></a>
+                                        {{-- <div class="product-flags">
                                 <span class="product-flag sale">NEW</span>
                                 <span class="product-flag discount">-10.00</span>
                             </div> --}}
-                            <ul class="prdouct-btn-wrapper">
-                                <li class="single-product-btn">
-                                    <a class="product-btn CompareList" data-id="11" title="Add To Compare"><i
-                                            class="icon flaticon-bar-chart"></i></a>
-                                </li>
-                                <li class="single-product-btn">
-                                    <a class="product-btn MyWishList" data-id="11" title="Add To Wishlist"><i
-                                            class="icon flaticon-like"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-info text-center">
-                            <h4 class="product-catagory">{{ $onsale->brand->en_brand_name }} - {{ $onsale->category->en_category_name }}</h4>
-                            <input type="hidden" name="quantity" value="1" id="product_quantity">
-                            <h3 class="product-name"><a class="product-link"
-                                    href="/product/single/fit-flare-dress-2">{{ $onsale->en_name ?? "" }}</a>
-                            </h3>
-                            <!-- This is server side code. User can not modify it. -->
-                            <ul class="product-review">
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                            </ul>
-                            <div class="product-price">
-                                <span class="regular-price">{{ $onsale->price ?? "" }}</span>
-                                <span class="price">$ {{ $onsale->discounted_price }}</span>
+                                        <ul class="prdouct-btn-wrapper">
+                                            <li class="single-product-btn">
+                                                <a class="product-btn CompareList" data-id="11"
+                                                    title="Add To Compare"><i class="icon flaticon-bar-chart"></i></a>
+                                            </li>
+                                            <li class="single-product-btn">
+                                                <a class="product-btn MyWishList" data-id="11"
+                                                    title="Add To Wishlist"><i class="icon flaticon-like"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="product-info text-center">
+                                        <h4 class="product-catagory">{{ $onsale->brand->en_brand_name }} -
+                                            {{ $onsale->category->en_category_name }}</h4>
+                                        <input type="hidden" name="quantity" value="1" id="product_quantity">
+                                        <h3 class="product-name"><a class="product-link"
+                                                href="{{ route('product.details', $onsale->slug) }}">{{ $onsale->en_name ?? '' }}</a>
+                                        </h3>
+                                        <!-- This is server side code. User can not modify it. -->
+                                        <ul class="product-review">
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                        </ul>
+                                        <div class="product-price">
+                                            <span class="regular-price">{{ $onsale->price ?? '' }}</span>
+                                            <span class="price">$ {{ $onsale->discounted_price }}</span>
+                                        </div>
+                                        <a href="javascript:void(0)" title="Add To Cart" class="add-cart addToCart"
+                                            data-id="{{ $onsale->id }}">Add
+                                            To Cart <i class="icon fas fa-plus-circle"></i></a>
+                                    </div>
+                                </div>
                             </div>
-                            <a href="javascript:void(0)" title="Add To Cart" class="add-cart addCart" data-id="11">Add
-                                To Cart <i class="icon fas fa-plus-circle"></i></a>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
+                        @endforeach
 
-            </div>
+                    </div>
                 </div>
                 <div class="tab-pane fade " id="featured-items" role="tabpanel" aria-labelledby="featured-items-tab">
-            <div class="row">
-                @foreach ($featured as $featured)
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-grid-product">
-                        <div class="product-top">
-                            <a href="/product/single/fit-flare-dress-2"><img class="product-thumbnal"
-                                    src="{{asset('front/assets/images/products/'.$featured->thumb)}}" alt="product" /></a>
-                            {{-- <div class="product-flags">
+                    <div class="row">
+                        @foreach ($featured as $featured)
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="single-grid-product">
+                                    <div class="product-top">
+                                        <a href="{{ route('product.details', $featured->slug) }}"><img
+                                                class="product-thumbnal"
+                                                src="{{ asset('front/assets/images/products/' . $featured->thumb) }}"
+                                                alt="product" /></a>
+                                        {{-- <div class="product-flags">
                                 <span class="product-flag sale">NEW</span>
                                 <span class="product-flag discount">-10.00</span>
                             </div> --}}
-                            <ul class="prdouct-btn-wrapper">
-                                <li class="single-product-btn">
-                                    <a class="product-btn CompareList" data-id="11" title="Add To Compare"><i
-                                            class="icon flaticon-bar-chart"></i></a>
-                                </li>
-                                <li class="single-product-btn">
-                                    <a class="product-btn MyWishList" data-id="11" title="Add To Wishlist"><i
-                                            class="icon flaticon-like"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-info text-center">
-                            <h4 class="product-catagory">{{ $featured->brand->en_brand_name }} - {{ $featured->category->en_category_name }}</h4>
-                            <input type="hidden" name="quantity" value="1" id="product_quantity">
-                            <h3 class="product-name"><a class="product-link"
-                                    href="/product/single/fit-flare-dress-2">{{ $featured->en_name ?? "" }}</a>
-                            </h3>
-                            <!-- This is server side code. User can not modify it. -->
-                            <ul class="product-review">
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                            </ul>
-                            <div class="product-price">
-                                <span class="regular-price">{{ $featured->price ?? "" }}</span>
-                                <span class="price">$ {{ $featured->discounted_price }}</span>
+                                        <ul class="prdouct-btn-wrapper">
+                                            <li class="single-product-btn">
+                                                <a class="product-btn CompareList" data-id="11"
+                                                    title="Add To Compare"><i class="icon flaticon-bar-chart"></i></a>
+                                            </li>
+                                            <li class="single-product-btn">
+                                                <a class="product-btn MyWishList" data-id="11"
+                                                    title="Add To Wishlist"><i class="icon flaticon-like"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="product-info text-center">
+                                        <h4 class="product-catagory">{{ $featured->brand->en_brand_name }} -
+                                            {{ $featured->category->en_category_name }}</h4>
+                                        <input type="hidden" name="quantity" value="1" id="product_quantity">
+                                        <h3 class="product-name"><a class="product-link"
+                                                href="{{ route('product.details', $featured->slug) }}">{{ $featured->en_name ?? '' }}</a>
+                                        </h3>
+                                        <!-- This is server side code. User can not modify it. -->
+                                        <ul class="product-review">
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                            <li class="review-item"><i class="flaticon-star"></i></li>
+                                        </ul>
+                                        <div class="product-price">
+                                            <span class="regular-price">{{ $featured->price ?? '' }}</span>
+                                            <span class="price">$ {{ $featured->discounted_price }}</span>
+                                        </div>
+                                        <a href="javascript:void(0)" title="Add To Cart" class="add-cart addToCart"
+                                            data-id="{{ $featured->id }}">Add
+                                            To Cart <i class="icon fas fa-plus-circle"></i></a>
+                                    </div>
+                                </div>
                             </div>
-                            <a href="javascript:void(0)" title="Add To Cart" class="add-cart addCart" data-id="11">Add
-                                To Cart <i class="icon fas fa-plus-circle"></i></a>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
+                        @endforeach
 
-            </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -444,5 +462,34 @@
     <div id="currency-price-url" data-url="/currency-price"></div>
     <div id="currency-symbol-url" data-url="/currency-symbol"></div>
     <div id="productImgAsset" data-url="/uploaded_files/product_image"></div>
+@endsection
+@push('scripts')
+    <script type="text/javascript">
+        $(document).on('click', '.addToCart', function(e) {
+            e.preventDefault();
+            var productId = $(this).data('id');
 
-    @endsection
+            $.ajax({
+                url: "{{ route('cart.add') }}",
+                type: "POST",
+                data: {
+                    product_id: productId,
+                    quantity: 1,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    if (response.status === 'success') {
+                        $('.totalCountItem').text(response.cart_count);
+                        $('.totalAmount').text('$ ' + response.total_price);
+                        toastr.success(response.message);
+                    } else {
+                        toastr.error(response.message);
+                    }
+                },
+                error: function() {
+                    toastr.error('Something went wrong', 'Error');
+                }
+            });
+        });
+    </script>
+@endpush

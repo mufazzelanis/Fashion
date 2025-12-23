@@ -84,7 +84,7 @@
                         <div class="search-area">
                             <form action="#" method="get">
                                 <div class="search-wrap">
-                                    <select name="category" class="form-select" >  
+                                    <select name="category" class="form-select">
                                         {{-- onchange="this.form.submit()" --}}
                                         <option value="">All Categories</option>
 
@@ -140,14 +140,18 @@
                                     aria-controls="cartOffcanvasSidebar" class="cart-btn header-btn">
                                     <div class="btn-left">
                                         <i class="btn-icon flaticon-shopping-bag"></i>
-                                        <span class="count totalCountItem">2</span>
+                                        <span class="count totalCountItem">{{ count(session('cart', [])) }}</span>
                                     </div>
                                     <div class="btn-right">
                                         <span class="btn-text">Your Cart</span>
-                                        <span class="price totalAmount">$ 540</span>
+                                        <span class="price totalAmount">
+                                            ${{ number_format(collect(session('cart', []))->sum(fn($item) => ($item['discountedPrice'] ?? $item['regularPrice']) * $item['quantity']), 2) }}
+                                        </span>
                                     </div>
                                 </a>
                             </div>
+
+
                         </div>
                     </div>
                 </div>

@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CategoryController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CompareController;
 use App\Http\Controllers\Frontend\PagesController;
-use App\Http\Controllers\Frontend\CategoryController;
 use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Frontend\SubscriberController;
 use App\Http\Controllers\Frontend\WelcomeController;
@@ -35,3 +35,5 @@ Route::resource('subscribers', SubscriberController::class);
 
 // testimonial routes
 Route::resource('testimonials', TestimonialController::class);
+
+Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');

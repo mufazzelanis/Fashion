@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use GrahamCampbell\ResultType\Success;
 
 class CartController extends Controller
 {
@@ -15,27 +17,47 @@ class CartController extends Controller
         return view('front.cart.index');
     }
 
-    // // CREATE
-    // public function store(Request $request)
-    // {
-    //     return Cart::create([
-    //         'user_id' => auth()->id(),
-    //         'product_id' => $request->product_id,
-    //         'quantity' => $request->quantity,
-    //     ]);
-    // }
 
-    // // UPDATE
-    // public function update(Request $request, Cart $cart)
-    // {
-    //     $cart->update(['quantity'=>$request->quantity]);
-    //     return $cart;
-    // }
+    public function addToCart(Request $request)
+    {
+        $product = Product::findOrFail($request->product_id);
+        $quantity = $request->input('quantity', 1);
 
-    // // DELETE
-    // public function destroy(Cart $cart)
-    // {
-    //     $cart->delete();
-    //     return response()->json(['message'=>'Removed from cart']);
-    // }
+        //session()->forget('cart');
+
+        $product = Product::find($request->product_id);
+
+        if (!$product) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Product not found.'
+            ], 404);
+        }
+
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$product->id])) {
+            $cart[$product->id]['quantity']+= $quantity;
+        } else {
+            $cart[$product->id] = [
+                'name'  => $product->en_name,
+                'regularPrice'  => $product->price,
+                'discountedPrice'  => $product->discounted_price,
+                'image' => $product->thumb,
+                'quantity'   => $quantity
+            ];
+        }
+
+        session()->put('cart', $cart);
+
+        $cartCount = collect($cart)->sum('quantity');
+        $totalprice = collect($cart)->sum(fn($item) => $item['discountedPrice'] * $item['quantity']);
+
+        return response()->json([
+            'status'     => 'success',
+            'message'     => 'Product added to cart successfully!',
+            'cart_count'  => $cartCount,
+            'total_price' => number_format($totalprice, 2),
+        ]);
+    }
 }
