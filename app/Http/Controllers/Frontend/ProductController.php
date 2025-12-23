@@ -36,7 +36,8 @@ class ProductController extends Controller
             ->get();
 
         $productImages = Gallery::where('product_id', $product->id)->get();
+        $data = Page::where('slug', 'product-details')->first();
 
-        return view('front.products.details', compact('product', 'relatedProducts', 'productImages'));
+        return view('front.products.details', compact('product', 'relatedProducts', 'productImages', 'data'));
     }
 }
