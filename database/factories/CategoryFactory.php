@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -25,5 +26,14 @@ class CategoryFactory extends Factory
             'created_at' => now(),
             'updated_at' => now(),
         ];
+    }
+
+
+    public function withProducts($count = 5)
+    {
+        return $this->has(
+            Product::factory()->count($count),
+            'products'
+        );
     }
 }

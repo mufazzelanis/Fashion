@@ -17,4 +17,10 @@ class Category extends Model
         'desc',
         'status',
     ];
+
+    // Relationship with Product
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

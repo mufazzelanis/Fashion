@@ -4,8 +4,8 @@
 @section('description', $data->meta_description)
 @section('keywords', $data->meta_keywords) --}}
 
-@section('content')
-    <!-- breadcrumb area start here  -->
+@section('content')    
+<!-- breadcrumb area start here  -->
     <div class="breadcrumb-area">
         <div class="container">
             <div class="breadcrumb-wrap text-center">
@@ -297,4 +297,5 @@
             </div>
         </div>
     </div>
+    <!-- Featured Products area end here  -->
 @endsection

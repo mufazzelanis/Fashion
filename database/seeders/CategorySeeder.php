@@ -2,25 +2,19 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Category;
+use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
 {
     public function run(): void
     {
         // Dummy categories
-        Category::factory()->count(10)->create();
+        // Category::factory()->count(10)->create();
+        Category::factory()
+            ->count(10)
+            ->withProducts(8) // 👈 8 products per category
+            ->create();
 
-        // Optional: Fixed category
-        Category::create([
-            'en_category_name' => 'Men Fashion',
-            'en_short_info'    => 'Trendy fashion for men',
-            'prd_count'        => '150',
-            'slug'             => 'men-fashion',
-            'icon'             => 'blezer.png',
-            'desc'             => 'All kinds of men fashion items available here.',
-            'status'           => 1,
-        ]);
     }
 }
