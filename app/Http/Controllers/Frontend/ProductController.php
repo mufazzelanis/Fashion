@@ -27,6 +27,7 @@ class ProductController extends Controller
         $product = Product::where('slug', $slug)
             ->where('status', 1)
             ->firstOrFail();
+
         $relatedProducts = Product::where('category_id', $product->category_id)
             ->where('id', '!=', $product->id)
             ->where('status', 1)
@@ -38,6 +39,4 @@ class ProductController extends Controller
 
         return view('front.products.details', compact('product', 'relatedProducts', 'productImages'));
     }
-
-    
 }

@@ -42,7 +42,7 @@ class ProductFactory extends Factory
             'meta_title' => $this->faker->sentence(6),
             'meta_description' => $this->faker->sentence(15),
             'meta_keywords' => implode(',', $this->faker->words(5)),
-            'status' => $this->faker->boolean(90),
+            'status' => $this->faker->boolean(100),
         ];
     }
 }
