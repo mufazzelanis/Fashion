@@ -249,8 +249,8 @@
                                                     <span class="regular-price">{{ $product->price ?? '' }}</span>
                                                     <span class="price">$ {{ $product->discounted_price }}</span>
                                                 </div>
-                                                <a href="javascript:void(0)" title="Add To Cart" class="add-cart addCart"
-                                                    data-id="11">Add
+                                                <a href="javascript:void(0)" title="Add To Cart" class="add-cart addToCart"
+                                                    data-id="{{ $product->id }}">Add
                                                     To Cart <i class="icon fas fa-plus-circle"></i></a>
                                             </div>
                                         </div>
@@ -471,3 +471,34 @@
 
     <!-- Product Area End -->
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        $(document).on('click', '.addToCart', function(e) {
+            e.preventDefault();
+            var productId = $(this).data('id');
+
+            $.ajax({
+                url: "{{ route('cart.add') }}",
+                type: "POST",
+                data: {
+                    product_id: productId,
+                    quantity: 1,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    if (response.status === 'success') {
+                        $('.totalCountItem').text(response.cart_count);
+                        $('.totalAmount').text('$ ' + response.total_price);
+                        toastr.success(response.message);
+                    } else {
+                        toastr.error(response.message);
+                    }
+                },
+                error: function() {
+                    toastr.error('Something went wrong', 'Error');
+                }
+            });
+        });
+    </script>
+@endpush

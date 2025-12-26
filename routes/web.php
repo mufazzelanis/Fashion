@@ -37,3 +37,9 @@ Route::resource('subscribers', SubscriberController::class);
 Route::resource('testimonials', TestimonialController::class);
 
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/cart/remove', [CartController::class, 'removeCart'])->name('cart.remove');
+
+Route::post('/cart/increase', [CartController::class, 'increaseQuantity'])->name('cart.increase');
+Route::post('/cart/decrease', [CartController::class, 'decreaseQuantity'])->name('cart.decrease');
+
+

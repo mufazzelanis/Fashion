@@ -117,8 +117,8 @@
                                 </div>
                                 <div class="product-bottom-button d-flex">
                                     <a href="javascript:void(0)" class="primary-btn buyNow" data-id="5">Buy Now</a>
-                                    <a href="javascript:void(0)" title="Add To Cart" class="add-cart addCart"
-                                        data-id="5">Add To Cart
+                                    <a href="javascript:void(0)" title="Add To Cart" class="add-cart addToCart"
+                                        data-id="{{ $product->id }}">Add To Cart
                                         <i class="icon fas fa-plus-circle"></i></a>
                                 </div>
                             </div>
@@ -262,7 +262,8 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="single-grid-product">
                             <div class="product-top">
-                                <a href="{{ route('product.details', $relatedProduct->slug) }}"><img class="product-thumbnal"
+                                <a href="{{ route('product.details', $relatedProduct->slug) }}"><img
+                                        class="product-thumbnal"
                                         src="{{ asset('front/assets/images/products/' . $product->thumb) }}"
                                         alt="product" /></a>
                                 <ul class="prdouct-btn-wrapper">
@@ -295,8 +296,8 @@
                                     <span class="regular-price">{{ $relatedProduct->price ?? '' }}</span>
                                     <span class="price">$ {{ $relatedProduct->discounted_price }}</span>
                                 </div>
-                                <a href="javascript:void(0)" title="Add To Cart" class="add-cart addCart"
-                                    data-id="11">Add
+                                <a href="javascript:void(0)" title="Add To Cart" class="add-cart addToCart"
+                                    data-id="{{ $relatedProduct->id }}">Add
                                     To Cart <i class="icon fas fa-plus-circle"></i></a>
                             </div>
                         </div>
@@ -307,3 +308,34 @@
     </div>
     <!-- Featured Products area end here  -->
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        $(document).on('click', '.addToCart', function(e) {
+            e.preventDefault();
+            var productId = $(this).data('id');
+
+            $.ajax({
+                url: "{{ route('cart.add') }}",
+                type: "POST",
+                data: {
+                    product_id: productId,
+                    quantity: 1,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    if (response.status === 'success') {
+                        $('.totalCountItem').text(response.cart_count);
+                        $('.totalAmount').text('$ ' + response.total_price);
+                        toastr.success(response.message);
+                    } else {
+                        toastr.error(response.message);
+                    }
+                },
+                error: function() {
+                    toastr.error('Something went wrong', 'Error');
+                }
+            });
+        });
+    </script>
+@endpush

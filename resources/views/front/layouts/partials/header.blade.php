@@ -136,8 +136,8 @@
                             </div>
 
                             <div class="cart single-btn">
-                                <a data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvasSidebar" role="button"
-                                    aria-controls="cartOffcanvasSidebar" class="cart-btn header-btn">
+                                <a href="{{ route('carts.index') }}" role="button"
+                                     class="cart-btn header-btn">
                                     <div class="btn-left">
                                         <i class="btn-icon flaticon-shopping-bag"></i>
                                         <span class="count totalCountItem">{{ count(session('cart', [])) }}</span>
