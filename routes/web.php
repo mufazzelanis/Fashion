@@ -23,6 +23,7 @@ Route::post('/contact-us', [PagesController::class, 'storeContact'])->name('cont
 Route::get('/faq', [PagesController::class, 'faq'])->name('faq');
 Route::get('/categories', [CategoryController::class, 'index'])->name('category.all');
 Route::get('/product/{slug}', [ProductController::class, 'productDetails'])->name('product.details');
+Route::get('/category/{slug}', [ProductController::class, 'productsByCategory'])->name('products.bycategory');
 
 // product routes
 

@@ -28,7 +28,7 @@ class ProductController extends Controller
             ->where('status', 1)
             ->firstOrFail();
 
-         $relatedProducts = Product::where('category_id', $product->category_id)
+        $relatedProducts = Product::where('category_id', $product->category_id)
             ->where('id', '!=', $product->id)
             ->where('status', 1)
             ->latest()
@@ -39,5 +39,16 @@ class ProductController extends Controller
         $data = Page::where('slug', 'product-details')->first();
 
         return view('front.products.details', compact('product', 'relatedProducts', 'productImages', 'data'));
+    }
+
+    public function productsByCategory($slug)
+    {
+        $categories = Category::where('status', 1)->get();
+        $brands = Brand::where('status', 1)->get();
+
+        $selectedCat = Category::where('status', 1)->where('slug', $slug)->first();
+        $products = Product::where('status', 1)->where('category_id', $selectedCat->id)->paginate(6);
+
+        return view('front.products.bycategory', compact('categories', 'brands', 'products', 'selectedCat'));
     }
 }

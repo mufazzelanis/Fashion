@@ -22,7 +22,10 @@ class CategoryFactory extends Factory
             'slug' => Str::slug($name),
             'icon' => 'blezer.png',
             'desc' => $this->faker->paragraph(),
-            'status' => $this->faker->boolean(90), // mostly active
+            'meta_title' => ucfirst($name).' | Category',
+            'meta_description' => $this->faker->sentence(15),
+            'keywords' => implode(', ', $this->faker->words(5)),
+            'status' => $this->faker->boolean(90), 
             'created_at' => now(),
             'updated_at' => now(),
         ];

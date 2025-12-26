@@ -39,7 +39,7 @@
             <div class="row">
                 @foreach ($categories as $category)
                 <div class="col-lg-4 col-md-6">
-                    <a class="single-categorie" href="/product/category/5">
+                    <a class="single-categorie" href="{{ route('products.bycategory', $category->slug) }}">
                         <div class="categorie-wrap">
                             <div class="categorie-icon">
                                 {{-- <i class="icon flaticon-blazer"></i> --}}
