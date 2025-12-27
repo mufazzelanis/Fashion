@@ -8,16 +8,32 @@ use App\Models\Category;
 use App\Models\Gallery;
 use App\Models\Page;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     // READ ALL
-    public function index()
+    public function index(Request $request)
     {
         $categories = Category::where('status', 1)->get();
         $brands = Brand::where('status', 1)->get();
-        $products = Product::where('status', 1)->paginate(6);
         $data = Page::where('slug', 'shop')->first();
+
+        $query = Product::where('status', 1);
+
+        if ($request->has('keywords') && ! empty($request->keywords)) {
+            $query->where('en_name', 'LIKE', '%'.$request->keywords.'%');
+        }
+
+        // Price range filter
+        if ($request->has('min_price') && ! empty($request->min_price)) {
+            $query->where('discounted_price', '>=', $request->min_price);
+        }
+        if ($request->has('max_price') && ! empty($request->max_price)) {
+            $query->where('discounted_price', '<=', $request->max_price);
+        }
+
+        $products = $query->paginate(6);
 
         return view('front.products.index', compact('categories', 'brands', 'products', 'data'));
     }

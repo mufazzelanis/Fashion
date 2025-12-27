@@ -22,11 +22,12 @@ Route::get('/contact-us', [PagesController::class, 'contactUs'])->name('contact.
 Route::post('/contact-us', [PagesController::class, 'storeContact'])->name('contact.store');
 Route::get('/faq', [PagesController::class, 'faq'])->name('faq');
 Route::get('/categories', [CategoryController::class, 'index'])->name('category.all');
+
 Route::get('/product/{slug}', [ProductController::class, 'productDetails'])->name('product.details');
 Route::get('/category/{slug}', [ProductController::class, 'productsByCategory'])->name('products.bycategory');
 
 // product routes
-
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::resource('products', ProductController::class);
 Route::resource('compares', CompareController::class);
 Route::resource('wishlists', WishlistController::class);

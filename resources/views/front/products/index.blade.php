@@ -38,51 +38,35 @@
 
                         <div class="single-widget search-widget">
                             <h3 class="widget-title">Search Here</h3>
-                            <form>
+                            <form method="GET" action="{{ route('products.index') }}">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="searchwidget" name="searchwidget"
-                                        placeholder="Product Store" />
-                                    <button type="button" class="search-btn"><i
-                                            class="flaticon-search searchWidget"></i></button>
+                                    <input type="text" class="form-control" id="searchwidget" name="keywords"
+                                        placeholder="Search products..." value="{{ request('keywords') }}" />
+                                    <button type="submit" class="search-btn"><i class="flaticon-search"></i></button>
                                 </div>
                             </form>
                         </div>
 
-                        <div class="single-widget categories-widget">
-                            <h3 class="widget-title">Categories</h3>
-                            <div class="categories-list">
-                                @foreach ($categories as $category)
-                                    <div class="single-categorie">
-                                        <div class="categorie-left">
-                                            <input class="form-check-input CheckCategory" type="checkbox"
-                                                value="{{ $category->en_category_name }}">
-                                            <label class="form-check-label">{{ $category->en_category_name }}</label>
-                                        </div>
-                                        <span class="categories-count">{{ $category->prd_count }}</span>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
 
                         <div class="single-widget price-widget">
                             <h3 class="widget-title">Price</h3>
-                            <form>
+                            <form method="GET" action="{{ route('products.index') }}">
                                 <div class="price-wrap">
                                     <div class="price-wrap-left">
                                         <div class="single-price">
                                             <input type="number" class="form-control" id="minPrice" name="min_price"
-                                                placeholder="$ Min" min="1" />
+                                                placeholder="$ Min" min="1" value="{{ request('min_price') }}" />
                                         </div>
                                         <div class="single-price">
                                             <input type="number" class="form-control" id="maxPrice" name="max_price"
-                                                placeholder="$ Max" />
+                                                placeholder="$ Max" value="{{ request('max_price') }}" />
                                         </div>
                                     </div>
-                                    <button type="button" class="price-submit PriceSubmit"><i
-                                            class="fas fa-play"></i></button>
+                                    <button type="submit" class="price-submit"><i class="fas fa-play"></i></button>
                                 </div>
                             </form>
                         </div>
+
 
                         <div class="single-widget colors-widget">
                             <h3 class="widget-title">Colors</h3>
@@ -192,16 +176,17 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="product-filter">
-                                    <form>
-                                        <select class="form-select sortingFilter">
-                                            <option value="stop">Categories</option>
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">
-                                                    {{ $category->en_category_name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </form>
+
+                                    <select class="form-select sortingFilter productsByCategory"
+                                        aria-label="Default select example">
+                                        <option value="stop">Categories</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->slug }}">
+                                                {{ $category->en_category_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
                                 </div>
                             </div>
                         </div>
@@ -249,8 +234,8 @@
                                                     <span class="regular-price">{{ $product->price ?? '' }}</span>
                                                     <span class="price">$ {{ $product->discounted_price }}</span>
                                                 </div>
-                                                <a href="javascript:void(0)" title="Add To Cart" class="add-cart addToCart"
-                                                    data-id="{{ $product->id }}">Add
+                                                <a href="javascript:void(0)" title="Add To Cart"
+                                                    class="add-cart addToCart" data-id="{{ $product->id }}">Add
                                                     To Cart <i class="icon fas fa-plus-circle"></i></a>
                                             </div>
                                         </div>
@@ -497,6 +482,18 @@
                 },
                 error: function() {
                     toastr.error('Something went wrong', 'Error');
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $(".productsByCategory").change(function() {
+                let slug = $(this).val();
+                if (slug) {
+                    let newUrl = "{{ url('/category') }}/" + slug;
+                    window.location.href = newUrl;
                 }
             });
         });
