@@ -44,6 +44,8 @@ class CartController extends Controller
                 'discountedPrice' => $product->discounted_price,
                 'image' => $product->thumb,
                 'quantity' => $quantity,
+                'color' => $color ?? "Any Color",
+                'size' => $size ?? "Any Size",
             ];
         }
 

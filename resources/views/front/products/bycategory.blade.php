@@ -44,6 +44,8 @@
                                         placeholder="Search products..." value="{{ request('keywords') }}" />
                                     <button type="submit" class="search-btn"><i class="flaticon-search"></i></button>
                                 </div>
+                                <input type="hidden" id="minPrice" name="min_price" min="1" value="{{ request('min_price') }}" />
+                                <input type="hidden"  id="maxPrice" name="max_price" value="{{ request('max_price') }}" />
                             </form>
                         </div>
 
@@ -51,6 +53,7 @@
                         <div class="single-widget price-widget">
                             <h3 class="widget-title">Price</h3>
                             <form method="GET" action="{{ route('products.index') }}">
+                                <input type="hidden" id="searchwidget" name="keywords" value="{{ request('keywords') }}" />
                                 <div class="price-wrap">
                                     <div class="price-wrap-left">
                                         <div class="single-price">
@@ -71,69 +74,29 @@
                         <div class="single-widget colors-widget">
                             <h3 class="widget-title">Colors</h3>
                             <div class="colors-list">
-                                <div class="single-colors">
-                                    <div class="colors-left">
-                                        <input style="background: #FF0000" class="form-check-input checkColor"
-                                            type="checkbox" id="#FF0000" value="Red">
-                                        <label class="form-check-label" for="#FF0000">Red</label>
+                                @foreach ($colors as $color)
+                                    <div class="single-colors">
+                                        <div class="colors-left">
+                                            <input style="background: {{ $color->color_code }}"
+                                                class="form-check-input checkColor" type="checkbox" id="#FF0000"
+                                                value="{{ $color->id }}">
+                                            <label class="form-check-label" for="#FF0000">{{ $color->color }}</label>
+                                        </div>
+                                        <span class="colors-count">{{ $color->count ?? '0' }}</span>
                                     </div>
-                                    <span class="colors-count">8</span>
-                                </div>
-                                <div class="single-colors">
-                                    <div class="colors-left">
-                                        <input style="background: #000000" class="form-check-input checkColor"
-                                            type="checkbox" id="#000000" value="Black">
-                                        <label class="form-check-label" for="#000000">Black</label>
-                                    </div>
-                                    <span class="colors-count">3</span>
-                                </div>
-                                <div class="single-colors">
-                                    <div class="colors-left">
-                                        <input style="background: #808080" class="form-check-input checkColor"
-                                            type="checkbox" id="#808080" value="Gray">
-                                        <label class="form-check-label" for="#808080">Gray</label>
-                                    </div>
-                                    <span class="colors-count">2</span>
-                                </div>
-                                <div class="single-colors">
-                                    <div class="colors-left">
-                                        <input style="background: #C0C0C0" class="form-check-input checkColor"
-                                            type="checkbox" id="#C0C0C0" value="Silver">
-                                        <label class="form-check-label" for="#C0C0C0">Silver</label>
-                                    </div>
-                                    <span class="colors-count">2</span>
-                                </div>
-
+                                @endforeach
                             </div>
                         </div>
                         <div class="single-widget size-widget">
                             <h3 class="widget-title">Size</h3>
                             <div class="size-list">
-                                <div class="single-size">
-                                    <input class="form-check-input checkSize" type="checkbox" id="1"
-                                        value="S">
-                                    <label class="form-check-label" for="1">S</label>
-                                </div>
-                                <div class="single-size">
-                                    <input class="form-check-input checkSize" type="checkbox" id="2"
-                                        value="M">
-                                    <label class="form-check-label" for="2">M</label>
-                                </div>
-                                <div class="single-size">
-                                    <input class="form-check-input checkSize" type="checkbox" id="3"
-                                        value="L">
-                                    <label class="form-check-label" for="3">L</label>
-                                </div>
-                                <div class="single-size">
-                                    <input class="form-check-input checkSize" type="checkbox" id="4"
-                                        value="XL">
-                                    <label class="form-check-label" for="4">XL</label>
-                                </div>
-                                <div class="single-size">
-                                    <input class="form-check-input checkSize" type="checkbox" id="5"
-                                        value="XXL">
-                                    <label class="form-check-label" for="5">XXL</label>
-                                </div>
+                                @foreach ($sizes as $size)
+                                    <div class="single-size">
+                                        <input class="form-check-input checkSize" type="checkbox" id="1"
+                                            value="{{ $size->id }}">
+                                        <label class="form-check-label" for="1">{{ $size->size }}</label>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
 

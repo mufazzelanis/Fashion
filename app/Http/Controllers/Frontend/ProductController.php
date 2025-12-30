@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Gallery;
 use App\Models\Page;
 use App\Models\Product;
+use App\Models\Size;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -18,6 +20,10 @@ class ProductController extends Controller
         $categories = Category::where('status', 1)->get();
         $brands = Brand::where('status', 1)->get();
         $data = Page::where('slug', 'shop')->first();
+        $colors = Color::all();
+        $sizes = Size::all();
+
+        
 
         $query = Product::where('status', 1);
 
@@ -35,7 +41,7 @@ class ProductController extends Controller
 
         $products = $query->paginate(6);
 
-        return view('front.products.index', compact('categories', 'brands', 'products', 'data'));
+        return view('front.products.index', compact('categories', 'brands', 'products', 'data', 'colors', 'sizes'));
     }
 
     public function productDetails($slug)
@@ -43,6 +49,9 @@ class ProductController extends Controller
         $product = Product::with('galleries')->where('slug', $slug)
             ->where('status', 1)
             ->firstOrFail();
+        $products = Product::with('sizes')->with('colors')->where('slug', $slug)
+            ->where('status', 1)
+            ->first();
 
         $relatedProducts = Product::where('category_id', $product->category_id)
             ->where('id', '!=', $product->id)
@@ -54,17 +63,19 @@ class ProductController extends Controller
         $productImages = Gallery::where('product_id', $product->id)->get();
         $data = Page::where('slug', 'product-details')->first();
 
-        return view('front.products.details', compact('product', 'relatedProducts', 'productImages', 'data'));
+        return view('front.products.details', compact('product', 'relatedProducts', 'productImages', 'data', 'products'));
     }
 
     public function productsByCategory($slug)
     {
         $categories = Category::where('status', 1)->get();
         $brands = Brand::where('status', 1)->get();
+        $colors = Color::all();
+        $sizes = Size::all();
 
         $selectedCat = Category::where('status', 1)->where('slug', $slug)->first();
         $products = Product::where('status', 1)->where('category_id', $selectedCat->id)->paginate(6);
 
-        return view('front.products.bycategory', compact('categories', 'brands', 'products', 'selectedCat'));
+        return view('front.products.bycategory', compact('categories', 'brands', 'products', 'selectedCat', 'colors', 'sizes'));
     }
 }
