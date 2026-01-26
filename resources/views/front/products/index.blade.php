@@ -109,7 +109,8 @@
                                     <div class="single-brand">
                                         <div class="brand-left">
                                             <input class="form-check-input CheckBrand" type="checkbox"
-                                                value="{{ $brand->id }}" @if(request()->has('brands') && in_array($brand->id, explode(',' $request('brands')))) checked @endif >
+                                                value="{{ $brand->id }}"
+                                                @if (request()->has('brands') && in_array($brand->id, explode(',', request('brands')))) checked @endif>
                                             <label class="form-check-label"
                                                 for="Renuar">{{ $brand->en_brand_name ?? '' }}</label>
                                         </div>

@@ -38,6 +38,10 @@ class ProductController extends Controller
         if ($request->has('max_price') && ! empty($request->max_price)) {
             $query->where('discounted_price', '<=', $request->max_price);
         }
+        // if ($request->has('brands') && ! empty($request->brands)) {
+        //     $brandsID = explode(',', $request->brands);
+        //     $query->whereIn('brand_id', $brandsID);
+        // }
 
         $products = $query->paginate(6);
 
